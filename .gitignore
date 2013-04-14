@@ -46,3 +46,4 @@ tmp/*
 
 # bower component
 components/*
+cerf/static/cerf/components/*
