@@ -1,0 +1,38 @@
+{% extends 'cerf/base.html' %}
+{% load static %}
+
+{% block extra_style %}
+  <link rel="stylesheet" href="{% static "cerf/css/sign-in.css" %}" type="text/css" media="screen" />
+{% endblock %}
+{% block content %}
+  <!-- Sign In Option 1 -->
+  <div id="sign_in1">
+    <div class="container">
+      <div class="row">
+        <div class="span12 header">
+          <h4>Log in to your account</h4>
+        </div>
+
+        <div class="span12 footer">
+          <form>
+            <input type="text" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <input type="submit" placeholder="Confirm Password" value="sign in">
+          </form>
+        </div>
+
+        <div class="span12 proof">
+          <div class="span3 remember">
+          </div>
+
+          <div class="span5 dosnt">
+            <span>Want to manage the interviews and exams?</span>
+            <a href="/admin/">Admin Sign In</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

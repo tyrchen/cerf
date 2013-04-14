@@ -1,0 +1,10 @@
+{
+  "name": "Cerf",
+  "version": "0.1.0",
+  "dependencies": {
+    "jquery": "*",
+    "lodash": "*",
+	"bootstrap": "*",
+	"isotope": "*"
+  }
+}

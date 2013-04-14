@@ -66,7 +66,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -142,6 +142,10 @@ INSTALLED_APPS = (
 )
 
 #AUTH_USER_MODEL = 'cerf.models.Account'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+#SESSION_COOKIE_AGE = 14400 # 4 hours
+SESSION_COOKIE_AGE = 60
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

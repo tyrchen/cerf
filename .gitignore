@@ -43,3 +43,6 @@ log/*
 tmp/*
 
 *.DS_Store
+
+# bower component
+components/*
