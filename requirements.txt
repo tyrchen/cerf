@@ -1,0 +1,6 @@
+django
+django-extentions
+django-taggit
+MySQL-python
+pyjade
+south
