@@ -14,10 +14,11 @@
         </div>
 
         <div class="span12 footer">
-          <form>
-            <input type="text" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <input type="submit" placeholder="Confirm Password" value="sign in">
+          <form action="" method="POST">
+            <input type="text" placeholder="Username" name="username" />
+            <input type="password" placeholder="Password" name="password" />
+            <input type="submit" value="sign in" />
+            {% csrf_token %}
           </form>
         </div>
 

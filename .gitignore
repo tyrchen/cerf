@@ -47,3 +47,10 @@ tmp/*
 # bower component
 components/*
 cerf/static/cerf/components/*
+
+# migrations
+cerf/migrations/*
+
+# uploaded files
+uploads/*
+

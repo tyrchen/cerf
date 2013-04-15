@@ -1,0 +1,56 @@
+{% extends 'cerf/base.html' %}
+{% load static %}
+
+{% block title %}Interviews{% endblock %}
+
+{% block extra_style %}
+  <link rel="stylesheet" type="text/css" href="{% static "cerf/css/services.css" %}">
+{% endblock %}
+
+{% block content %}
+  <div id="service_2">
+    <div class="container">
+      <div class="section_header">
+        <h3>Interview List</h3>
+      </div>
+
+      {% if interview_list %}
+        {% for interview in interview_list %}
+          <div class="row perk">
+            <!--
+            <div class="span2 circle circle1">
+
+            </div>
+            -->
+            <div class="span12 description_wrapper">
+              <h5>Candidate: {{ interview.candidate.get_full_name }}</h5>
+              <p>
+                <ul>
+                  <li>Manager: {{ interview.manager.get_full_name }}</li>
+                  <li>Create</li>
+                </ul>
+              </p>
+              <p>{{ interview.exam.description }}</p>
+            </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                  <a href="/interviews/?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+              <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+              {% if page_obj.has_next %}
+                <a href="/interviews/?page={{ page_obj.next_page_number }}">next</a>
+              {% endif %}
+            </span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

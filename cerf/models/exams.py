@@ -67,5 +67,8 @@ class Interview(models.Model):
     resume = models.FileField(upload_to='uploads/resumes')
     exam = models.ForeignKey('Exam')
     report = models.TextField('Report', default='', blank=True, help_text='Do not edit this, since it is generated automatically')
+    scheduled = models.DateTimeField('Scheduled')
+    finished = models.DateTimeField('Finished')
     created = CreationDateTimeField()
     modified = ModificationDateTimeField()
+

@@ -2,9 +2,9 @@
 #sign_in1{
     background: url("../img/backgrounds/aqua.jpg")  no-repeat;
     display: block;
-    height: 590px;
+    height: 560px;
     /*margin-bottom: 90px;*/
-    margin-top: -135px;
+    margin-top: -35px;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -14,7 +14,7 @@
     text-align: center;
     margin: 0;
     color: #fff;
-    margin-top: 185px;
+    margin-top: 105px;
     padding-left: 20px;
 }
 #sign_in1 .header h4{

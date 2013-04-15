@@ -7,6 +7,8 @@ from django.core.urlresolvers import reverse
 from django.http import QueryDict
 
 import logging
+from django.shortcuts import render_to_response
+from django.template import Context
 from django.utils.datetime_safe import datetime
 from datetime import datetime as old_datetime
 from django.conf import settings
@@ -124,14 +126,8 @@ def distinct_list(seq, idfun=None):
     result.append(item)
   return result
 
-def get_account_url(user_id):
-  return '/accounts/%s/' % user_id
-
-# TODO: this code breaks the architecture, should be revised
-def is_place(name):
-  from cayman.contrib.places.models import Place
-  return Place.objects.filter(name=name).exists()
-
-def get_place(name):
-  from cayman.contrib.places.models import Place
-  return Place.get_by_name(name)
+def info_response(info, template = 'cerf/info.html'):
+    context = Context({
+        'info': info
+    })
+    return render_to_response(template, context)
