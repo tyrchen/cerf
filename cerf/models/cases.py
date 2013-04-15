@@ -26,6 +26,7 @@ class Case(models.Model):
     category = models.IntegerField('Category', choices=const.CASE_CATEGORY_CHOICES, default=const.CASE_CATEGORY_GENERAL)
     solution = models.TextField('Suggested Solution', default='', blank=True)
     author = models.ForeignKey(User)
+    code = models.TextField('Code', blank=True, default='', help_text='Leave this blank if you do not have initial code to let candidate work with')
     language = models.IntegerField('Language', choices=const.CASE_LANG_CHOICES, default=const.CASE_LANG_C)
     created = CreationDateTimeField()
     modified = ModificationDateTimeField()
@@ -55,7 +56,5 @@ class Anwser(models.Model):
     def __unicode__(self):
         return '%s: %s' % (self.author.username, self.case)
 
-    def url(self):
-        return '/media/interview/%s/%s.tgz' % (self.interview_id, self.case.slug)
 
 

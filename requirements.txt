@@ -1,6 +1,11 @@
 django
 django-extentions
+django-filter
 django-taggit
+djangorestframework
+markdown
 MySQL-python
 pyjade
+pyyaml
 south
+

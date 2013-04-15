@@ -49,7 +49,7 @@ components/*
 cerf/static/cerf/components/*
 
 # migrations
-cerf/migrations/*
+# cerf/migrations/*
 
 # uploaded files
 uploads/*

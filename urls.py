@@ -19,5 +19,6 @@ urlpatterns = patterns('',
     url('^signout/$', 'django.contrib.auth.views.logout', name='signout'),
     url(r'^exams/', include('cerf.urls.exams')),
     url(r'^interviews/', include('cerf.urls.interviews')),
+    url(r'^api/', include('cerf.urls.api')),
     url(r'^admin/', include(admin.site.urls)),
 )

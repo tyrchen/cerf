@@ -6,6 +6,7 @@ import logging
 from django.contrib import admin
 from cerf.forms import CaseForm, ExamForm, InterviewForm
 from cerf.models import Case, Exam, Interview
+from cerf.utils.helper import generate_authcode
 
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
@@ -60,7 +61,7 @@ class ExamAdmin(admin.ModelAdmin, TagAdminMixin):
 
 class InterviewAdmin(admin.ModelAdmin):
     form = InterviewForm
-    list_display = ('candidate', 'manager', 'resume', 'exam', 'finished', 'created', 'modified')
+    list_display = ('candidate', 'manager', 'resume', 'authcode', 'exam', 'finished', 'created', 'modified')
     list_filter = (
         ('manager'),
     )
@@ -73,6 +74,7 @@ class InterviewAdmin(admin.ModelAdmin):
         obj = super(InterviewAdmin, self).save_form(request, form, change)
         if not change:
             obj.manager = request.user
+            obj.authcode = generate_authcode()
         return obj
 
 admin.site.register(Case, CaseAdmin)

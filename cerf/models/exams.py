@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.conf import settings
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.db import models
 import logging
 from django.utils.text import slugify
 from django_extensions.db.fields import CreationDateTimeField, ModificationDateTimeField
-from cerf.utils import const
 from taggit.managers import TaggableManager
 
 __author__ = 'tchen'
@@ -67,8 +66,25 @@ class Interview(models.Model):
     resume = models.FileField(upload_to='uploads/resumes')
     exam = models.ForeignKey('Exam')
     report = models.TextField('Report', default='', blank=True, help_text='Do not edit this, since it is generated automatically')
+
+    authcode = models.CharField('Auth Code', max_length=32, help_text='Do not edit this, since it is generated automatically')
+
     scheduled = models.DateTimeField('Scheduled')
-    finished = models.DateTimeField('Finished')
+    started = models.DateField('Started', null=True, blank=True)
+    finished = models.DateTimeField('Finished', null=True, blank=True)
     created = CreationDateTimeField()
     modified = ModificationDateTimeField()
+
+    def start(self):
+        if not self.started:
+            self.started = datetime.now()
+            self.save()
+            return True
+        return False
+
+    def finish(self):
+        if not self.started or self.finished:
+            return False
+        self.finished = datetime.now()
+        self.save()
 

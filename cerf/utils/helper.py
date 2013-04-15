@@ -131,3 +131,7 @@ def info_response(info, template = 'cerf/info.html'):
         'info': info
     })
     return render_to_response(template, context)
+
+def generate_authcode(length=6):
+    import random, string
+    return ''.join([random.choice(string.digits + string.letters) for i in range(0, length)])
