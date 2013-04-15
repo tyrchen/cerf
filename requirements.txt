@@ -3,9 +3,11 @@ django-extentions
 django-filter
 django-taggit
 djangorestframework
+docopt
 markdown
 MySQL-python
 pyjade
 pyyaml
+requests
 south
 

@@ -18,7 +18,7 @@ def get_valid_interview(request, pk):
         interview = Interview.objects.get(pk=pk)
     except:
         return None
-    authcode = request.REQUEST.get('authcode', '')
+    authcode = request.DATA.get('authcode', '')
     if interview.authcode == authcode:
         return interview
     return None
@@ -26,7 +26,7 @@ def get_valid_interview(request, pk):
 
 class InterviewAPIView(RetrieveUpdateAPIView):
     serializer_class = InterviewSerializer
-    actions = ['start', 'finish']
+    actions = ['start', 'finish', 'reset']
 
     def get_object(self, queryset=None):
         pk = self.args[0]
@@ -35,19 +35,19 @@ class InterviewAPIView(RetrieveUpdateAPIView):
     def get(self, request, *args, **kwargs):
         interview = self.get_object()
         if not interview:
-            return Response(json.dumps({}))
+            return Response({})
 
         serializer = self.get_serializer(interview)
         return Response(serializer.data)
 
     def put(self, request, *args, **kwargs):
-        action_name = request.POST.get('action', '')
+        action_name = request.DATA.get('action', '')
         if action_name not in self.actions:
-            return Response(json.dumps({}))
+            return Response({})
 
         interview = self.get_object()
         if not interview:
-            return Response(json.dumps({}))
+            return Response({})
 
         getattr(interview, action_name)()
 

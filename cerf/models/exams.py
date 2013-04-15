@@ -88,3 +88,7 @@ class Interview(models.Model):
         self.finished = datetime.now()
         self.save()
 
+
+    def reset(self):
+        self.started = self.finished = None
+        self.save()
