@@ -8,4 +8,5 @@ __author__ = 'tchen'
 
 urlpatterns = patterns('',
     url('^$', InterviewListView.as_view(), name='interviews'),
+    url('^%s/$', InterviewView.as_view(), name="interview"),
 )
