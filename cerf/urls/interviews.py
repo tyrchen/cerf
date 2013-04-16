@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.conf.urls import patterns, url
-from cerf.views.interviews import InterviewListView
+from cerf.views.interviews import InterviewListView, InterviewView
 
 __author__ = 'tchen'
 

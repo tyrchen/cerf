@@ -4,53 +4,73 @@
 {% block title %}Interviews{% endblock %}
 
 {% block extra_style %}
-  <link rel="stylesheet" type="text/css" href="{% static "cerf/css/services.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}">
 {% endblock %}
 
 {% block content %}
-  <div id="service_2">
-    <div class="container">
-      <div class="section_header">
-        <h3>Interview List</h3>
-      </div>
+<div class="main" style="margin-top: 40px;">
+  <div class="container">
+    <div class="row">
+      <div class="span8">
+        <div class="widget stacked">
+          <div class="widget-header">
+            <i class="icon-pushpin"></i>
+            <h3>Recent Interview Records</h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            <ol class="faq-list">
+              {% if interview_list %}
+                {% for interview in interview_list %}
+                  <li>
+                    <div class="faq-icon"><div class="faq-number">{{ forloop.counter }}</div></div>
+                    <div class="faq-text">
+                      <h4>{{ interview.exam.name }} for {{ interview.candidate.get_full_name }} by {{ interview.manager.get_full_name }}</h4>
+                      <p>{{ interview.exam.description }}</p>
+                    </div>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            </ol>
 
-      {% if interview_list %}
-        {% for interview in interview_list %}
-          <div class="row perk">
-            <!--
-            <div class="span2 circle circle1">
-
-            </div>
-            -->
-            <div class="span12 description_wrapper">
-              <h5>Candidate: {{ interview.candidate.get_full_name }}</h5>
-              <p>
-                <ul>
-                  <li>Manager: {{ interview.manager.get_full_name }}</li>
-                  <li>Create</li>
-                </ul>
-              </p>
-              <p>{{ interview.exam.description }}</p>
-            </div>
-        {% endfor %}
-      </div>
-      {% endif %}
-
-      {% if is_paginated %}
-        <div class="pagination">
-            <span class="page-links">
+            {% if is_paginated %}
+              <div class="pagination">
+              <span class="page-links">
                 {% if page_obj.has_previous %}
                   <a href="/interviews/?page={{ page_obj.previous_page_number }}">previous</a>
                 {% endif %}
-              <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                <span class="page-current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                 </span>
-              {% if page_obj.has_next %}
-                <a href="/interviews/?page={{ page_obj.next_page_number }}">next</a>
-              {% endif %}
-            </span>
-        </div>
-      {% endif %}
-    </div>
-  </div>
+                {% if page_obj.has_next %}
+                  <a href="/interviews/?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+              </span>
+              </div>
+            {% endif %}
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div> <!-- /span8 -->
+
+      <div class="span4">
+        <div class="widget widget-plain">
+          <div class="widget-content">
+            <a href="javascript:;" class="btn btn-large btn-warning btn-support-ask btn-disable">Create An Interview</a>
+            <a href="javascript:;" class="btn btn-large btn-support-contact">Contact Support</a>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+
+        <div class="widget stacked widget-box">
+          <div class="widget-header">
+            <h3>Toolbox for Future Use</h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div> <!-- /span4 -->
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
+
+
 {% endblock %}

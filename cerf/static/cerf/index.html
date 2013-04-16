@@ -1,475 +1,618 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Business Template</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-    <!-- Styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/theme.css">
-    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard :: Base Admin</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">    
+    
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap-responsive.min.css" rel="stylesheet">
+    
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="./css/font-awesome.min.css" rel="stylesheet">        
+    
+    <link href="./css/ui-lightness/jquery-ui-1.10.0.custom.min.css" rel="stylesheet">
+    
+    <link href="./css/base-admin-2.css" rel="stylesheet">
+    <link href="./css/base-admin-2-responsive.css" rel="stylesheet">
+    
+    <link href="./css/pages/dashboard.css" rel="stylesheet">   
 
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/lib/animate.css" media="screen, projection">    
+    <link href="./css/custom.css" rel="stylesheet">
 
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-</head>
-<body class="pull_top">
-    <div class="navbar transparent navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="index.html">
-                <strong>CLEAN CANVAS</strong>
-            </a>
-            <div class="nav-collapse collapse">
-                <ul class="nav pull-right">
-                    <li><a href="index.html" class="active">HOME</a></li>
-                    <li><a href="about-us.html">ABOUT US</a></li>
-                    <li class="dropdown">
-                        <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">
-                            PAGES
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="features.html">Features</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="portfolio.html">Portfolio</a></li>
-                            <li><a href="portfolio-item.html">Portfolio Item</a></li>
-                            <li><a href="coming-soon.html">Coming Soon</a></li>
-                            <li><a href="sign-in.html">Sign in</a></li>
-                            <li><a href="sign-up.html">Sign up</a></li>
-                            <li><a href="backgrounds.html">Backgrounds</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="pricing.html">PRICING</a></li>
-                    <li><a href="contact.html">CONTACT US</a></li>
-                    <li><a href="blog.html">BLOG</a></li>
-                    <li><a class="btn-header" href="sign-up.html">Sign up</a></li>
-                    <li><a class="btn-header" href="sign-in.html">Sign in</a></li>
-                </ul>
-            </div>
-        </div>
-      </div>
-    </div>
 
-    <section id="feature_slider" class="">
-        <!-- 
-            Each slide is composed by <img> and .info
-            - .info's position is customized with css in index.css
-            - each <img> parallax effect is declared by the following params inside its class:
-            
-            example: class="asset left-472 sp600 t120 z3"
-            left-472 means left: -472px from the center
-            sp600 is speed transition
-            t120 is top to 120px
-            z3 is z-index to 3
-            Note: Maintain this order of params
+  </head>
 
-            For the backgrounds, you can combine from the bgs folder :D
-        -->
-        <article class="slide" id="showcasing" style="background: url('img/backgrounds/landscape.png') repeat-x top center;">
-            <img class="asset left-30 sp600 t120 z1" src="img/slides/scene1/macbook.png" />
-            <div class="info">
-                <h2>Beautiful theme for showcasing your works.</h2>
-            </div>
-        </article>
-        <article class="slide" id="ideas" style="background: url('img/backgrounds/aqua.jpg') repeat-x top center;">
-            <div class="info">
-                <h2>We love to turn ideas into beautiful things.</h2>
-            </div>
-            <img class="asset left-480 sp600 t260 z1" src="img/slides/scene2/left.png" />
-            <img class="asset left-210 sp600 t213 z2" src="img/slides/scene2/middle.png" />
-            <img class="asset left60 sp600 t260 z1" src="img/slides/scene2/right.png" />
-        </article>
-        <article class="slide" id="tour" style="background: url('img/backgrounds/color-splash.jpg') repeat-x top center;">
-            <img class="asset left-472 sp650 t210 z3" src="img/slides/scene3/ipad.png" />
-            <img class="asset left-365 sp600 t270 z4" src="img/slides/scene3/iphone.png" />
-            <img class="asset left-350 sp450 t135 z2" src="img/slides/scene3/desktop.png" />
-            <img class="asset left-185 sp550 t220 z1" src="img/slides/scene3/macbook.png" />
-            <div class="info">
-                <h2>Fully Responsive theme</h2>
-                <a href="features.html">TOUR THE PRODUCT</a>
-            </div>
-        </article>
-        <article class="slide" id="responsive" style="background: url('img/backgrounds/indigo.jpg') repeat-x top center;">
-            <img class="asset left-472 sp600 t120 z3" src="img/slides/scene4/html5.png" />
-            <img class="asset left-190 sp500 t120 z2" src="img/slides/scene4/css3.png" />
-            <div class="info">
-                <h2>
-                    Responsive <strong>HTML5 & CSS3</strong>
-                    Theme
-                </h2>                
-            </div>
-        </article>        
-    </section>
+<body>
 
-    <div id="showcase">
-        <div class="container">
-            <div class="section_header">
-                <h3>Our Services</h3>
-            </div>            
-            <div class="row feature_wrapper">
-                <!-- Features Row -->
-                <div class="features_op1_row">
-                    <!-- Feature -->
-                    <div class="span4 feature first">
-                        <div class="img_box">
-                            <a href="services.html">
-                                <img src="img/service1.png">
-                                <span class="circle"> 
-                                    <span class="plus">&#43;</span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="text">
-                            <h6>Responsive theme</h6>
-                            <p>
-                                There are many variations of passages of generators on the  embarrassing hidden in   content here making it look like.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Feature -->
-                    <div class="span4 feature">
-                        <div class="img_box">
-                            <a href="services.html">
-                                <img src="img/service2.png">
-                                <span class="circle"> 
-                                    <span class="plus">&#43;</span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="text">
-                            <h6>Easy customization</h6>
-                            <p>
-                                There are many variations of passages of generators on the  embarrassing hidden in   content here making it look like.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Feature -->
-                    <div class="span4 feature last">
-                        <div class="img_box">
-                            <a href="services.html">
-                                <img src="img/service3.png">
-                                <span class="circle"> 
-                                    <span class="plus">&#43;</span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="text">
-                            <h6>Made with love</h6>
-                            <p>
-                                There are many variations of passages of generators on the  embarrassing hidden in   content here making it look like.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="features">
-        <div class="container">
-            <div class="section_header">
-                <h3>Features</h3>
-            </div> 
-            <div class="row feature">
-                <div class="span6">
-                    <img src="img/showcase1.png" />
-                </div>
-                <div class="span6 info">
-                    <h3>
-                        <img src="img/features-ico1.png" />
-                        Beautiful on all devices
-                    </h3>
-                    <p>
-                        There are many variations of passages of Lorem Ipsum available, but the randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
-                    </p>
-                </div>
-            </div>
-            <div class="row feature ss">
-                <div class="span6 info">
-                    <h3>
-                        <img src="img/features-ico2.png" />
-                        Blog page included
-                    </h3>
-                    <p>
-                        There are many variations of passages of Lorem Ipsum available, but the randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
-                    </p>
-                </div>
-                <div class="span6">
-                    <img src="img/showcase2.png" class="pull-right" />
-                </div>
-            </div>
-            <div class="row feature ss">
-                <div class="span6">
-                    <img src="img/showcase3.png" />
-                </div>
-                <div class="span6 info">
-                    <h3>
-                        <img src="img/features-ico3.png" />
-                        Simple and clean coming soon page
-                    </h3>
-                    <p>
-                        There are many variations of passages of Lorem Ipsum available, but the randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+	
+	<div class="navbar-inner">
+		
+		<div class="container">
+			
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<i class="icon-cog"></i>
+			</a>
+			
+			<a class="brand" href="./index.html">
+				Base Admin <sup>2.0</sup>
+			</a>		
+			
+			<div class="nav-collapse collapse">
+				<ul class="nav pull-right">
+					<li class="dropdown">
+						
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-cog"></i>
+							Settings
+							<b class="caret"></b>
+						</a>
+						
+						<ul class="dropdown-menu">
+							<li><a href="javascript:;">Account Settings</a></li>
+							<li><a href="javascript:;">Privacy Settings</a></li>
+							<li class="divider"></li>
+							<li><a href="javascript:;">Help</a></li>
+						</ul>
+						
+					</li>
+			
+					<li class="dropdown">
+						
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-user"></i> 
+							Rod Howard
+							<b class="caret"></b>
+						</a>
+						
+						<ul class="dropdown-menu">
+							<li><a href="javascript:;">My Profile</a></li>
+							<li><a href="javascript:;">My Groups</a></li>
+							<li class="divider"></li>
+							<li><a href="javascript:;">Logout</a></li>
+						</ul>
+						
+					</li>
+				</ul>
+			
+				<form class="navbar-search pull-right">
+					<input type="text" class="search-query" placeholder="Search">
+				</form>
+				
+			</div><!--/.nav-collapse -->	
+	
+		</div> <!-- /container -->
+		
+	</div> <!-- /navbar-inner -->
+	
+</div> <!-- /navbar -->
+    
 
 
-    <!-- Pricing Option -->
-    <div id="in_pricing">
-        <div class="container">
-            <div class="section_header">
-                <h3>Pricing</h3>
-            </div>
 
-            <div class="row charts_wrapp">
-                <!-- Plan Box -->
-                <div class="span4">
-                    <div class="plan">
-                        <div class="wrapper">
-                            <h3>Lite</h3>
-                            <div class="price">
-                                <span class="dollar">$</span> 
-                                <span class="qty">35</span> 
-                                <span class="month">/month</span>
-                            </div>
-                            <div class="features">
-                                <p>
-                                    <strong>10</strong>
-                                    Shared Projects
-                                </p>
-                                <p>
-                                    <strong>4</strong>
-                                    Team Members
-                                </p>
-                                <p>
-                                    <strong>10</strong>
-                                    Storage
-                                </p>
-                            </div>
-                            <a class="order" href="pricing.html">ORDER NOW</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Plan Box -->
-                <div class="span4 pro">
-                    <div class="plan">
-                        <div class="wrapper">
-                            <img class="ribbon" src="img/badge.png">
-                            <h3>Pro</h3>
-                            <div class="price">
-                                <span class="dollar">$</span> 
-                                <span class="qty">99</span> 
-                                <span class="month">/month</span>
-                            </div>
-                            <div class="features">
-                                <p>
-                                    <strong>10</strong>
-                                    Shared Projects
-                                </p>
-                                <p>
-                                    <strong>25</strong>
-                                    Team Members
-                                </p>
-                                <p>
-                                    <strong>Unlimited</strong>
-                                     Storage
-                                </p>
-                                <p>
-                                    <strong>Plus </strong>
-                                    Phone Support
-                                </p>
-                            </div>
-                            <a class="order" href="pricing.html">ORDER NOW</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Plan Box -->
-                <div class="span4 standar">
-                    <div class="plan">
-                        <div class="wrapper">
-                            <h3>Standard</h3>
-                            <div class="price">
-                                <span class="dollar">$</span> 
-                                <span class="qty">65</span> 
-                                <span class="month">/month</span>
-                            </div>
-                            <div class="features">
-                                <p>
-                                    <strong>10</strong>
-                                    Shared Projects
-                                </p>
-                                <p>
-                                    <strong>4</strong>
-                                    Team Members
-                                </p>
-                                <p>
-                                    <strong>10</strong>
-                                    Storage
-                                </p>
-                            </div>
-                            <a class="order" href="pricing.html">ORDER NOW</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="start">
-                <p>Start your free, no-risk, 14 day trial! </p>
-                <a href="pricing.html">Start Now!</a>
-            </div>
-        </div>
-    </div>
+    
+<div class="subnavbar">
 
-    <div id="clients">
-        <div class="container">
-            <div class="section_header">
-                <h3>Clients</h3>
-            </div>
-            <div class="row">
-                <div class="span2 client">
-                    <div class="img client1"></div>
-                </div>
-                <div class="span2 client">
-                    <div class="img client2"></div>
-                </div>
-                <div class="span2 client">
-                    <div class="img client3"></div>
-                </div>
-                <div class="span2 client">
-                    <div class="img client1"></div>
-                </div>
-                <div class="span2 client">
-                    <div class="img client2"></div>
-                </div>
-                <div class="span2 client">
-                    <div class="img client3"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="subnavbar-inner">
+	
+		<div class="container">
+			
+			<a class="btn-subnavbar collapsed" data-toggle="collapse" data-target=".subnav-collapse">
+				<i class="icon-reorder"></i>
+			</a>
 
-    <!-- starts footer -->
-    <footer id="footer">
-        <div class="container">
-            <div class="row sections">
-                <div class="span4 recent_posts">
-                    <h3 class="footer_header">
-                        Recent Posts
-                    </h3>
-                    <div class="post">
-                        <a href="blogpost.html">
-                            <img src="img/recent_post1.png" class="img-circle" />
-                        </a>
-                        <div class="date">
-                            Wed, 12 Dec
-                        </div>
-                        <a href="blogpost.html" class="title">
-                            Randomised words which don't look embarrasing hidden.
-                        </a>
-                    </div>
-                    <div class="post">
-                        <a href="blogpost.html">
-                            <img src="img/recent_post2.png" class="img-circle" />
-                        </a>
-                        <div class="date">
-                            Mon, 12 Dec
-                        </div>
-                        <a href="blogpost.html" class="title">
-                            Randomised words which don't look embarrasing hidden.
-                        </a>
-                    </div>
-                </div>
-                <div class="span4 testimonials">
-                    <h3 class="footer_header">
-                        Testimonials
-                    </h3>
-                    <div class="wrapper">
-                        <div class="quote">
-                            <span>“</span>
-                            There are many variations of passages of randomised words which don't look even slightly believable. You need to be sure there isn't anything embarrassing of text.
-                            <span></span>
-                        </div>
-                        <div class="author">
-                            <img src="img/user-display.png" />
-                            <div class="name">Alejandra Galvan Castillo</div>
-                            <div class="info">
-                                Details Canvas
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="span4 contact">
-                    <h3 class="footer_header">
-                        Contact
-                    </h3>
-                    <form action="#" method="post">
-                        <input type="text" placeholder="Your name" />
-                        <input type="text" placeholder="Your email" />
-                        <textarea rows="3" placeholder="Message"></textarea>
-                        <input type="submit" value="Send" />
-                    </form>
-                </div>
-            </div>
-            <div class="row credits">
-                <div class="span12">
-                    <div class="row social">
-                        <div class="span12">
-                            <a href="index.html#" class="facebook">
-                                <span class="socialicons ico1"></span>
-                                <span class="socialicons_h ico1h"></span>
-                            </a>
-                            <a href="index.html#" class="twitter">
-                                <span class="socialicons ico2"></span>
-                                <span class="socialicons_h ico2h"></span>
-                            </a>
-                            <a href="index.html#" class="gplus">
-                                <span class="socialicons ico3"></span>
-                                <span class="socialicons_h ico3h"></span>
-                            </a>
-                            <a href="index.html#" class="flickr">
-                                <span class="socialicons ico4"></span>
-                                <span class="socialicons_h ico4h"></span>
-                            </a>
-                            <a href="index.html#" class="pinterest">
-                                <span class="socialicons ico5"></span>
-                                <span class="socialicons_h ico5h"></span>
-                            </a>
-                            <a href="index.html#" class="dribble">
-                                <span class="socialicons ico6"></span>
-                                <span class="socialicons_h ico6h"></span>
-                            </a>
-                            <a href="index.html#" class="behance">
-                                <span class="socialicons ico7"></span>
-                                <span class="socialicons_h ico7h"></span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row copyright">
-                        <div class="span12">
-                            © 2013 Clean Canvas. All rights reserved. Theme by Detail Canvas.
-                        </div>
-                    </div>
-                </div>            
-            </div>
-        </div>
-    </footer>
+			<div class="subnav-collapse collapse">
+				<ul class="mainnav">
+				
+					<li class="active">
+						<a href="./index.html">
+							<i class="icon-home"></i>
+							<span>Home</span>
+						</a>	    				
+					</li>
+					
+					<li class="dropdown">					
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-th"></i>
+							<span>Components</span>
+							<b class="caret"></b>
+						</a>	    
+					
+						<ul class="dropdown-menu">
+							<li><a href="./elements.html">Elements</a></li>
+							<li><a href="./validation.html">Validation</a></li>
+							<li><a href="./jqueryui.html">jQuery UI</a></li>
+							<li><a href="./charts.html">Charts</a></li>
+							<li><a href="./popups.html">Popups/Notifications</a></li>
+						</ul> 				
+					</li>
+					
+					<li class="dropdown">					
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-copy"></i>
+							<span>Sample Pages</span>
+							<b class="caret"></b>
+						</a>	    
+					
+						<ul class="dropdown-menu">
+							<li><a href="./pricing.html">Pricing Plans</a></li>
+							<li><a href="./faq.html">FAQ's</a></li>
+							<li><a href="./gallery.html">Gallery</a></li>
+							<li><a href="./reports.html">Reports</a></li>
+							<li><a href="./account.html">User Account</a></li>
+						</ul> 				
+					</li>
+					
+					<li class="dropdown">					
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-external-link"></i>
+							<span>Extra Pages</span>
+							<b class="caret"></b>
+						</a>	
+					
+						<ul class="dropdown-menu">
+							<li><a href="./login.html">Login</a></li>
+							<li><a href="./signup.html">Signup</a></li>
+							<li><a href="./error.html">Error</a></li>
+							<li class="dropdown-submenu">
+			                  <a tabindex="-1" href="#">Dropdown menu</a>
+			                  <ul class="dropdown-menu">
+			                    <li><a tabindex="-1" href="#">Second level link</a></li>
+			                    <li><a tabindex="-1" href="#">Second level link</a></li>
+			                    <li><a tabindex="-1" href="#">Second level link</a></li>
+			                  </ul>
+			                </li>
+						</ul>    				
+					</li>
+				
+				</ul>
+			</div> <!-- /.subnav-collapse -->
 
-    <!-- Scripts -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/theme.js"></script>
+		</div> <!-- /container -->
+	
+	</div> <!-- /subnavbar-inner -->
 
-    <script type="text/javascript" src="js/index-slider.js"></script>	
-</body>
+</div> <!-- /subnavbar -->
+    
+    
+<div class="main">
+
+    <div class="container">
+
+      <div class="row">
+      	
+      	<div class="span6">
+      		
+      		<div class="widget stacked">
+					
+				<div class="widget-header">
+					<i class="icon-star"></i>
+					<h3>Quick Stats</h3>
+				</div> <!-- /widget-header -->
+				
+				<div class="widget-content">
+					
+					<div class="stats">
+						
+						<div class="stat">
+							<span class="stat-value">12,386</span>									
+							Site Visits
+						</div> <!-- /stat -->
+						
+						<div class="stat">
+							<span class="stat-value">9,249</span>									
+							Unique Visits
+						</div> <!-- /stat -->
+						
+						<div class="stat">
+							<span class="stat-value">70%</span>									
+							New Visits
+						</div> <!-- /stat -->
+						
+					</div> <!-- /stats -->
+					
+					
+					<div id="chart-stats" class="stats">
+						
+						<div class="stat stat-chart">							
+							<div id="donut-chart" class="chart-holder"></div> <!-- #donut -->							
+						</div> <!-- /substat -->
+						
+						<div class="stat stat-time">									
+							<span class="stat-value">00:28:13</span>
+							Average Time on Site
+						</div> <!-- /substat -->
+						
+					</div> <!-- /substats -->
+					
+				</div> <!-- /widget-content -->
+					
+			</div> <!-- /widget -->	
+			
+			
+			<div class="widget widget-nopad stacked">
+						
+				<div class="widget-header">
+					<i class="icon-list-alt"></i>
+					<h3>Recent News</h3>
+				</div> <!-- /widget-header -->
+				
+				<div class="widget-content">
+					
+					<ul class="news-items">
+						<li>
+							
+							<div class="news-item-detail">										
+								<a href="javascript:;" class="news-item-title">Duis aute irure dolor in reprehenderit</a>
+								<p class="news-item-preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+							</div>
+							
+							<div class="news-item-date">
+								<span class="news-item-day">08</span>
+								<span class="news-item-month">Mar</span>
+							</div>
+						</li>
+						<li>
+							<div class="news-item-detail">										
+								<a href="javascript:;" class="news-item-title">Duis aute irure dolor in reprehenderit</a>
+								<p class="news-item-preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+							</div>
+							
+							<div class="news-item-date">
+								<span class="news-item-day">08</span>
+								<span class="news-item-month">Mar</span>
+							</div>
+						</li>
+						<li>
+							<div class="news-item-detail">										
+								<a href="javascript:;" class="news-item-title">Duis aute irure dolor in reprehenderit</a>
+								<p class="news-item-preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+							</div>
+							
+							<div class="news-item-date">
+								<span class="news-item-day">08</span>
+								<span class="news-item-month">Mar</span>
+							</div>
+						</li>
+					</ul>
+					
+				</div> <!-- /widget-content -->
+			
+			</div> <!-- /widget -->	
+					
+										
+			<div class="widget stacked">
+				
+				<div class="widget-header">
+					<i class="icon-file"></i>
+					<h3>Content</h3>
+				</div> <!-- /widget-header -->
+				
+				<div class="widget-content">
+					
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					
+					
+					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>					
+					
+				</div> <!-- /widget-content -->
+			
+			</div> <!-- /widget -->
+      		
+	    </div> <!-- /span6 -->
+      	
+      	
+      	<div class="span6">	
+      		
+      		
+      		<div class="widget stacked">
+					
+				<div class="widget-header">
+					<i class="icon-bookmark"></i>
+					<h3>Quick Shortcuts</h3>
+				</div> <!-- /widget-header -->
+				
+				<div class="widget-content">
+					
+					<div class="shortcuts">
+						<a href="javascript:;" class="shortcut">
+							<i class="shortcut-icon icon-list-alt"></i>
+							<span class="shortcut-label">Apps</span>
+						</a>
+						
+						<a href="javascript:;" class="shortcut">
+							<i class="shortcut-icon icon-bookmark"></i>
+							<span class="shortcut-label">Bookmarks</span>								
+						</a>
+						
+						<a href="javascript:;" class="shortcut">
+							<i class="shortcut-icon icon-signal"></i>
+							<span class="shortcut-label">Reports</span>	
+						</a>
+						
+						<a href="javascript:;" class="shortcut">
+							<i class="shortcut-icon icon-comment"></i>
+							<span class="shortcut-label">Comments</span>								
+						</a>
+						
+						<a href="javascript:;" class="shortcut">
+							<i class="shortcut-icon icon-user"></i>
+							<span class="shortcut-label">Users</span>
+						</a>
+						
+						<a href="javascript:;" class="shortcut">
+							<i class="shortcut-icon icon-file"></i>
+							<span class="shortcut-label">Notes</span>	
+						</a>
+						
+						<a href="javascript:;" class="shortcut">
+							<i class="shortcut-icon icon-picture"></i>
+							<span class="shortcut-label">Photos</span>	
+						</a>
+						
+						<a href="javascript:;" class="shortcut">
+							<i class="shortcut-icon icon-tag"></i>
+							<span class="shortcut-label">Tags</span>
+						</a>				
+					</div> <!-- /shortcuts -->	
+				
+				</div> <!-- /widget-content -->
+				
+			</div> <!-- /widget -->
+      		
+      		
+					
+					
+			<div class="widget stacked">
+					
+				<div class="widget-header">
+					<i class="icon-signal"></i>
+					<h3>Chart</h3>
+				</div> <!-- /widget-header -->
+				
+				<div class="widget-content">					
+					<div id="area-chart" class="chart-holder"></div>					
+				</div> <!-- /widget-content -->
+			
+			</div> <!-- /widget -->
+					
+					
+					
+					
+			<div class="widget stacked widget-table action-table">
+					
+				<div class="widget-header">
+					<i class="icon-th-list"></i>
+					<h3>Table</h3>
+				</div> <!-- /widget-header -->
+				
+				<div class="widget-content">
+					
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Engine</th>
+								<th>Browser</th>
+								<th class="td-actions"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Trident</td>
+								<td>Internet
+									 Explorer 4.0</td>
+								<td class="td-actions">
+									<a href="javascript:;" class="btn btn-small btn-warning">
+										<i class="btn-icon-only icon-ok"></i>										
+									</a>
+									
+									<a href="javascript:;" class="btn btn-small">
+										<i class="btn-icon-only icon-remove"></i>										
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>Trident</td>
+								<td>Internet
+									 Explorer 5.0</td>
+								<td class="td-actions">
+									<a href="javascript:;" class="btn btn-small btn-warning">
+										<i class="btn-icon-only icon-ok"></i>										
+									</a>
+									
+									<a href="javascript:;" class="btn btn-small">
+										<i class="btn-icon-only icon-remove"></i>										
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>Trident</td>
+								<td>Internet
+									 Explorer 5.5</td>
+								<td class="td-actions">
+									<a href="javascript:;" class="btn btn-small btn-warning">
+										<i class="btn-icon-only icon-ok"></i>										
+									</a>
+									
+									<a href="javascript:;" class="btn btn-small">
+										<i class="btn-icon-only icon-remove"></i>										
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>Trident</td>
+								<td>Internet
+									 Explorer 5.5</td>
+								<td class="td-actions">
+									<a href="javascript:;" class="btn btn-small btn-warning">
+										<i class="btn-icon-only icon-ok"></i>										
+									</a>
+									
+									<a href="javascript:;" class="btn btn-small">
+										<i class="btn-icon-only icon-remove"></i>										
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>Trident</td>
+								<td>Internet
+									 Explorer 5.5</td>
+								<td class="td-actions">
+									<a href="javascript:;" class="btn btn-small btn-warning">
+										<i class="btn-icon-only icon-ok"></i>										
+									</a>
+									
+									<a href="javascript:;" class="btn btn-small">
+										<i class="btn-icon-only icon-remove"></i>										
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>Trident</td>
+								<td>Internet
+									 Explorer 5.5</td>
+								<td class="td-actions">
+									<a href="javascript:;" class="btn btn-small btn-warning">
+										<i class="btn-icon-only icon-ok"></i>										
+									</a>
+									
+									<a href="javascript:;" class="btn btn-small">
+										<i class="btn-icon-only icon-remove"></i>										
+									</a>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					
+				</div> <!-- /widget-content -->
+			
+			</div> <!-- /widget -->
+								
+	      </div> <!-- /span6 -->
+      	
+      </div> <!-- /row -->
+
+    </div> <!-- /container -->
+    
+</div> <!-- /main -->
+    
+
+
+<div class="extra">
+
+	<div class="container">
+
+		<div class="row">
+			
+			<div class="span3">
+				
+				<h4>About</h4>
+				
+				<ul>
+					<li><a href="javascript:;">About Us</a></li>
+					<li><a href="javascript:;">Twitter</a></li>
+					<li><a href="javascript:;">Facebook</a></li>
+					<li><a href="javascript:;">Google+</a></li>
+				</ul>
+				
+			</div> <!-- /span3 -->
+			
+			<div class="span3">
+				
+				<h4>Support</h4>
+				
+				<ul>
+					<li><a href="javascript:;">Frequently Asked Questions</a></li>
+					<li><a href="javascript:;">Ask a Question</a></li>
+					<li><a href="javascript:;">Video Tutorial</a></li>
+					<li><a href="javascript:;">Feedback</a></li>
+				</ul>
+				
+			</div> <!-- /span3 -->
+			
+			<div class="span3">
+				
+				<h4>Legal</h4>
+				
+				<ul>
+					<li><a href="javascript:;">License</a></li>
+					<li><a href="javascript:;">Terms of Use</a></li>
+					<li><a href="javascript:;">Privacy Policy</a></li>
+					<li><a href="javascript:;">Security</a></li>
+				</ul>
+				
+			</div> <!-- /span3 -->
+			
+			<div class="span3">
+				
+				<h4>Settings</h4>
+				
+				<ul>
+					<li><a href="javascript:;">Consectetur adipisicing</a></li>
+					<li><a href="javascript:;">Eiusmod tempor </a></li>
+					<li><a href="javascript:;">Fugiat nulla pariatur</a></li>
+					<li><a href="javascript:;">Officia deserunt</a></li>
+				</ul>
+				
+			</div> <!-- /span3 -->
+			
+		</div> <!-- /row -->
+
+	</div> <!-- /container -->
+
+</div> <!-- /extra -->
+
+
+    
+    
+<div class="footer">
+		
+	<div class="container">
+		
+		<div class="row">
+			
+			<div id="footer-copyright" class="span6">
+				&copy; 2012-13 Jumpstart UI.
+			</div> <!-- /span6 -->
+			
+			<div id="footer-terms" class="span6">
+				Theme by <a href="http://jumpstartui.com" target="_blank">Jumpstart UI</a>
+			</div> <!-- /.span6 -->
+			
+		</div> <!-- /row -->
+		
+	</div> <!-- /container -->
+	
+</div> <!-- /footer -->
+
+
+
+    
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="./js/libs/jquery-1.8.3.min.js"></script>
+<script src="./js/libs/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="./js/libs/bootstrap.min.js"></script>
+
+<script src="./js/plugins/flot/jquery.flot.js"></script>
+<script src="./js/plugins/flot/jquery.flot.pie.js"></script>
+<script src="./js/plugins/flot/jquery.flot.resize.js"></script>
+
+<script src="./js/Application.js"></script>
+
+<script src="./js/charts/area.js"></script>
+<script src="./js/charts/donut.js"></script>
+
+  </body>
 </html>

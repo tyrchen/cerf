@@ -11,16 +11,20 @@
 
 
     <!-- Styles -->
-    <link href="{% static "cerf/components/bootstrap/docs/assets/css/bootstrap.css" %}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="{% static "cerf/css/theme.css" %}">
+    <link href="{% static "cerf/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "cerf/css/bootstrap-responsive.min.css" %}" rel="stylesheet" type="text/css" />
 
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{% static "cerf/css/lib/animate.css" %}" media="screen, projection">
+    <link href="{% static "cerf/css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+
+    <link href="{% static "cerf/css/ui-lightness/jquery-ui-1.10.0.custom.min.css" %}" rel="stylesheet">
+
+    <link href="{% static "cerf/css/base-admin-2.css" %}" rel="stylesheet">
+    <link href="{% static "cerf/css/base-admin-2-responsive.css" %}" rel="stylesheet">
+
+    <link href="{% static "cerf/css/custom.css" %}" rel="stylesheet">
+
     {% block extra_style %}{% endblock %}
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
 
     <!-- Only for rare situation should we use css block -->
     {% block extra_css %} {% endblock %}
@@ -30,66 +34,45 @@
     {% block extra_header %}{% endblock %}
   </head>
   <body {% block bodyattr %}{% endblock %}>
-    <div class="navbar navbar-inverse navbar-static-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <i class="icon-cog"></i>
           </a>
-          <a class="brand" href="/">
-            <strong>Juniper CNRD Code Exam</strong>
+          <a class="brand" href="./index.html">
+            Juniper CNRD Exam Service <sup>0.1</sup>
           </a>
-          <div class="nav-collapse collapse">
+          <div class="nav-collapse">
             <ul class="nav pull-right">
-              <li><a href="/">Home</a></li>
-              {% if request.user.is_authenticated and request.user.is_staff %}
-                {% comment %}<li><a href="{% url "exams" %}" class="{% if type == 'exams' %}active{% endif %}">Exams</a></li>{% endcomment %}
-                <li><a href="{% url "Interviews" %}" class="{% if type == 'interviews' %}active{% endif %}">Interviews</a></li>
-              {% endif %}
+              <li class="">
+                <a href="/" class="{% if type == 'home' %}active{% endif %}">Home</a>
+              </li>
+              <li class="">
+                <a href="{% url "interviews" %}" class="{% if type == 'interviews' %}active{% endif %}">Interviews</a>
+              </li>
             </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+          </div><!--/.nav-collapse -->
+        </div> <!-- /container -->
+      </div> <!-- /navbar-inner -->
+    </div> <!-- /navbar -->
+
 
     {% block content %} {% endblock %}
+
     <!-- starts footer -->
-    <footer id="footer">
-      <div class="container">
-        <div class="row info">
-          <div class="span6 residence">
-            <ul>
-              <li>6/F, SOHU Internet Building, No.1 Zhongguancun East Road</li>
-              <li>Haidian District, Beijing, China 100086</li>
-            </ul>
-          </div>
-          <div class="span5 touch">
-            <ul>
-              <li><strong>Contact</strong> +86 5874 7002</li>
-              <li><strong>Website</strong><a href="http://www.juniper.net"> Juniper</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="row credits">
-          <div class="span12">
-            <div class="row copyright">
-              <div class="span12">
-                © 2013 Tyr Chen. All rights reserved.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
 
     {% csrf_token %}
     <!-- put js at the bottom of the file -->
+
     <script type="text/javascript" src="{% static "cerf/components/jquery/jquery.min.js" %}"></script>
+    <script src={% static "cerf/js/libs/jquery-ui-1.10.0.custom.min.js" %}></script>
     <script type="text/javascript" src="{% static "cerf/components/bootstrap/docs/assets/js/bootstrap.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "cerf/js/theme.js" %}"></script>
+
     {% block extra_script %}
+    {% endblock %}
+
+    {% block extra_js %}
     {% endblock %}
 
   </body>

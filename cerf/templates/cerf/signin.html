@@ -2,38 +2,45 @@
 {% load static %}
 
 {% block extra_style %}
-  <link rel="stylesheet" href="{% static "cerf/css/sign-in.css" %}" type="text/css" media="screen" />
+  <link rel="stylesheet" href="{% static "cerf/css/pages/signin.css" %}" type="text/css" media="screen" />
 {% endblock %}
 {% block content %}
-  <!-- Sign In Option 1 -->
-  <div id="sign_in1">
-    <div class="container">
-      <div class="row">
-        <div class="span12 header">
-          <h4>Log in to your account</h4>
-        </div>
 
-        <div class="span12 footer">
-          <form action="" method="POST">
-            <input type="text" placeholder="Username" name="username" />
-            <input type="password" placeholder="Password" name="password" />
-            <input type="submit" value="sign in" />
-            {% csrf_token %}
-          </form>
-        </div>
+<div class="account-container stacked">
+  <div class="content clearfix">
+    <form action="" method="post">
+      <h1>Sign In</h1>
+      <div class="login-fields">
+        <p>Sign in using your registered account:</p>
 
-        <div class="span12 proof">
-          <div class="span3 remember">
-          </div>
+        <div class="field">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" value="" placeholder="Username" class="login username-field" />
+        </div> <!-- /field -->
 
-          <div class="span5 dosnt">
-            <span>Want to manage the interviews and exams?</span>
-            <a href="/admin/">Admin Sign In</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="field">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" value="" placeholder="Password" class="login password-field"/>
+        </div> <!-- /password -->
+      </div> <!-- /login-fields -->
+
+      <div class="login-actions">
+        <span class="login-checkbox hide">
+          <input id="Field" name="Field" type="checkbox" class="field login-checkbox" value="First Choice" tabindex="4" />
+          <label class="choice" for="Field">Keep me signed in</label>
+        </span>
+        <button class="button btn btn-warning btn-large" type="submit">Sign In</button>
+        {% csrf_token %}
+      </div> <!-- .actions -->
+    </form>
+  </div> <!-- /content -->
+</div> <!-- /account-container -->
+
+
+<!-- Text Under Box -->
+<div class="login-extra">
+  Want to manage the interviews and exams? <a href="/admin/">Admin Login</a><br/>
+</div> <!-- /login-extra -->
 
 
 {% endblock %}
