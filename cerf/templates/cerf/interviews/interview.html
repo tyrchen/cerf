@@ -3,3 +3,69 @@
 
 {% block title %}{{ interview.name }}{% endblock %}
 
+{% block extra_style %}
+  <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "cerf/components/bootstrap/docs/assets/js/google-code-prettify/prettify.css" %}">
+{% endblock %}
+
+{% block extra_css %}
+  <style>
+    .main em { font-weight: bold; font-style: normal; font-size: 110%; color: #c20000; }
+
+  </style>
+
+{% endblock %}
+
+{% block content %}
+<div class="main" style="margin-top: 40px;">
+  <div class="container">
+    <div class="row">
+      <div class="span8">
+        <div class="widget stacked">
+          <div class="widget-header">
+            <i class="icon-pushpin"></i>
+            <h3>{{ report.title }} for {{ report.candidate }} by {{ report.manager }}</h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            <div class="faq-text">
+              <h3>Summary</h3>
+
+              <p>{{ report.description }}</p>
+
+              <p>The exam took for <em>{{report.time_spent}}</em> minutes. Total <em>{{candidate_count}}</em> candidates took this exam, average time spent is <em>{{avg_time_spent}}</em> minutes.</p>
+
+              {% for result in report.results %}
+                <h4>Case{{result.position}}: {{result.name}}</h4>
+                <p>This case is for <em>{{result.level}}</em> on <em>{{result.type}}</em>. The category is <em>{{result.category}}</em>. Coding language should be <em>{{result.language}}</em>.</p>
+                <p>{{result.description}}</p>
+
+                <pre class="prettyprint linenums">
+                  {{result.code}}
+                </pre>
+
+
+              {% endfor %}
+            </div>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div> <!-- /span8 -->
+
+      <div class="span4">
+        <div class="widget stacked widget-box">
+          <div class="widget-header">
+            <h3>Toolbox for Future Use</h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div> <!-- /widget-content -->
+        </div> <!-- /widget -->
+      </div> <!-- /span4 -->
+    </div> <!-- /row -->
+  </div> <!-- /container -->
+</div> <!-- /main -->
+{% endblock %}
+
+{% block extra_script %}
+  <script type="text/javascript" src="{% static "cerf/components/bootstrap/docs/assets/js/google-code-prettify/prettify.js" %}"></script>
+  <script>prettyPrint();</script>
+{% endblock %}

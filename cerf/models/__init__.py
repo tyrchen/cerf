@@ -1,2 +1,3 @@
 from cases import Case, Answer
-from exams import Exam, Interview, ExamCase
+from exams import Exam, ExamCase
+from interviews import Interview

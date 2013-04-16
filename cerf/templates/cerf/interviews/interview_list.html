@@ -24,7 +24,7 @@
                   <li>
                     <div class="faq-icon"><div class="faq-number">{{ forloop.counter }}</div></div>
                     <div class="faq-text">
-                      <h4>{{ interview.exam.name }} for {{ interview.candidate.get_full_name }} by {{ interview.manager.get_full_name }}</h4>
+                      <h4><a href="{% url "interview" interview.id %}">{{ interview.exam.name }} for {{ interview.candidate.get_full_name }} by {{ interview.manager.get_full_name }}</a></h4>
                       <p>{{ interview.exam.description }}</p>
                     </div>
                   </li>
