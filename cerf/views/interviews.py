@@ -3,7 +3,8 @@ from __future__ import unicode_literals
 import json
 import logging
 from django.db.models import Avg
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
+from cerf.forms import InterviewForm
 from cerf.models import Interview
 
 __author__ = 'tchen'
@@ -15,6 +16,11 @@ class InterviewListView(ListView):
     model = Interview
     paginate_by = 20
     context_object_name = 'interview_list'
+
+
+class InterviewCreateView(CreateView):
+    form_class = InterviewForm
+    template_name = 'cerf/interviews/interview_create.html'
 
 
 class InterviewView(DetailView):

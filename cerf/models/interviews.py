@@ -72,6 +72,7 @@ class Interview(models.Model):
         results = sorted(results, key=lambda item: item['position'])
         data = {
             'name': self.exam.name,
+            'description': self.exam.description,
             'candidate': self.candidate.get_full_name(),
             'manager': self.manager.get_full_name(),
             'started': self.started.isoformat(),

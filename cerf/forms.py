@@ -21,4 +21,4 @@ class ExamForm(forms.ModelForm):
 class InterviewForm(forms.ModelForm):
     class Meta:
         model = Interview
-        exclude = ('manager', 'started', 'authcode', 'time_spent')
+        exclude = ('manager', 'started', 'authcode', 'time_spent', 'report')

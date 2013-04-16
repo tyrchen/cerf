@@ -1,0 +1,18 @@
+{% extends "cerf/base.html" %}
+{% load static %}
+{% block extra_style %}
+  <link rel="stylesheet" href="{% static "cerf/css/pages/signin.css" %}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block content %}
+  <div class="account-container stacked" style="width: 760px;">
+    <div class="content clearfix">
+      <form action="" method="post">
+        <h1>Create an Interview</h1>
+        {{ form.as_p }}
+        <button class="button btn btn-warning btn-large" type="submit">Create Now!</button>
+        {% csrf_token %}
+      </form>
+    </div> <!-- /content -->
+  </div> <!-- /account-container -->
+{% endblock %}
