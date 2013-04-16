@@ -46,7 +46,7 @@ class ExamCase(models.Model):
         db_table = 'cerf_exam_case'
         verbose_name = 'Exam Case'
         ordering = ['position']
-        unique_together = (('exam', 'case'), ('exam', 'position'))
+        unique_together = (('exam', 'case'))
     case = models.ForeignKey('Case', related_name='examcase_set')
     exam = models.ForeignKey('Exam')
     position = models.IntegerField('Position')

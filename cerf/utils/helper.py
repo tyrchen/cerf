@@ -135,3 +135,13 @@ def info_response(info, template = 'cerf/info.html'):
 def generate_authcode(length=6):
     import random, string
     return ''.join([random.choice(string.digits + string.letters) for i in range(0, length)])
+
+def get_choice_string(choice, choices):
+    for item in choices:
+        if item[0] == choice:
+            return item[1]
+
+    raise IndexError
+
+def get_lang_extentions(lang, extentions):
+    return extentions[lang]

@@ -40,6 +40,9 @@ class Case(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_extentions(self):
+        return const.CASE_LANG_EXTENTIONS[self.language]
+
 class Anwser(models.Model):
     class Meta:
         app_label = 'cerf'

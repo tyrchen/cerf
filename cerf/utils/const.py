@@ -37,6 +37,7 @@ CASE_CATEGORY_TCPIP = 1
 CASE_CATEGORY_SECURITY = 2
 CASE_CATEGORY_DRIVER = 3
 CASE_CATEGORY_APPLICATION = 4
+CASE_CATEGORY_PERFORMANCE = 5
 
 CASE_CATEGORY_CHOICES = (
     (CASE_CATEGORY_GENERAL, 'General'),
@@ -44,6 +45,7 @@ CASE_CATEGORY_CHOICES = (
     (CASE_CATEGORY_SECURITY, 'Security'),
     (CASE_CATEGORY_DRIVER, 'Device Driver'),
     (CASE_CATEGORY_APPLICATION, 'Application'),
+    (CASE_CATEGORY_PERFORMANCE, 'Performance'),
 )
 
 CASE_LANG_C = 0
@@ -67,3 +69,14 @@ CASE_LANG_CHOICES = (
     (CASE_LANG_ERLANG, 'ERLang'),
     (CASE_LANG_JAVASCRIPT, 'Javascript'),
 )
+
+CASE_LANG_EXTENTIONS = [
+    ['.c', '.h', '.cpp', '.cc'],
+    ['.tcl'],
+    ['.sh'],
+    ['.py'],
+    ['.java'],
+    ['.ruby'],
+    ['.erl'],
+    ['.js'],
+]
