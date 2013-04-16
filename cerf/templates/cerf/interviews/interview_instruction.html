@@ -1,0 +1,70 @@
+{% extends "cerf/base.html" %}
+{% load static %}
+{% block extra_style %}
+  <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "cerf/components/bootstrap/docs/assets/js/google-code-prettify/prettify.css" %}">
+{% endblock %}
+
+{% block extra_css %}
+  <style>
+    .container {width: 780px; padding: 40px;}
+    @media print {
+      .navbar {display: none;}
+    }
+    .container, p, ol, ul, li {font-size: 14px; line-height: 20px;}
+    h3 {margin-top: 30px;}
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="container" xmlns="http://www.w3.org/1999/html">
+    <h2>Instruction for {{ interview.candidate.get_full_name }}</h2>
+
+    <h3>Code exam environment</h3>
+    <p>
+      We will provide <em>Ubuntu 12.10</em> as your code exam environment. You could login with <em>candidate</em>/<em>juniper</em>.
+      Once you logged in successfully, please follow the instructions below to start your coding exam:
+    </p>
+    <ol>
+      <li>
+        Open a terminal.
+      </li>
+      <li>
+          <p>Run <em>"vint start &lt;your-interview-id&gt;"</em>, as following:</p>
+          <pre class="prettyprint">
+$ vint start {{ interview.id }}
+Please provide your authentication code:{{ interview.authcode }}
+Nice to meet you, {{ interview.candidate.get_full_name }}! Thanks for your interest in Juniper China R&D.
+Creating the exam environment... Done!
+You can "cd exam{{ interview.exam.id }}" to start your exam now.
+          </pre>
+      </li>
+      <li>
+          Once your environment is set, the exam is timed. You shall start working on the cases. Detailed instruction is in exam and case directory.
+      </li>
+      <li>
+          You could use vim/emacs/eclipse to write code, gdb/eclipse to debug. Please put your source code inside the case directory.
+      </li>
+      <li>
+          If you finished the exam or time were up, you shall run "vint finish" in the root of exam directory. e.g. exam{{ interview.exam.id }}
+      </li>
+      <li>
+          For any issues you met, please notify your hiring manager.
+      </li>
+    </ol>
+
+    <h3>Interview ID and authcode</h3>
+    <p>Your interview id is <em>{{ interview.id }}</em>. Authcode is <em>{{ interview.authcode }}</em>. Please keep it secret.</p>
+
+    <h3>HotKeys You May Need to Know</h3>
+    <ul>
+      <li>Vim: "Shift+:" to enter command. "wq" is write and quit. "ESC" will quite the command mode.</li>
+      <li>Emacs: "C-x C-f" to open file, "C-x C-s" to save file, "C-x C-c" to quit. "C" stands for "Ctrl".</li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block extra_script %}
+  <script type="text/javascript" src="{% static "cerf/components/bootstrap/docs/assets/js/google-code-prettify/prettify.js" %}"></script>
+  <script>prettyPrint();</script>
+{% endblock %}

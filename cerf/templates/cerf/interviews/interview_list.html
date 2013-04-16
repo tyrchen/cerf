@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}">
 {% endblock %}
 
+
 {% block content %}
 <div class="main" style="margin-top: 40px;">
   <div class="container">
@@ -26,6 +27,15 @@
                     <div class="faq-text">
                       <h4><a href="{% url "interview" interview.id %}">{{ interview.exam.name }} for {{ interview.candidate.get_full_name }} by {{ interview.manager.get_full_name }}</a></h4>
                       <p>{{ interview.exam.description }}</p>
+                      {% if not interview.started %}
+                        <p>This interview is <em>NOT started</em>.</p>
+                      {% else %}
+                        {% if not interview.time_spent %}
+                          <p>This interview is started on {{ interview.started }}, but <em>NOT finished</em> yet.</p>
+                        {% else %}
+                          <p>This interview is <em>finished</em>, click to view its report.</p>
+                        {% endif %}
+                      {% endif %}
                     </div>
                   </li>
                 {% endfor %}

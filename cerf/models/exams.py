@@ -40,6 +40,7 @@ class Exam(models.Model):
     def get_examcases(self):
         return ExamCase.objects.filter(exam=self)
 
+
 class ExamCase(models.Model):
     class Meta:
         app_label = 'cerf'

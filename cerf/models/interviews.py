@@ -52,8 +52,6 @@ class Interview(models.Model):
         self.send_notification()
 
     def generate_report(self, save=True):
-        from django.template import Context
-        from django.template.loader import get_template
         answers = Answer.objects.filter(interview=self).select_related()
         results = []
         for answer in answers:
@@ -75,8 +73,8 @@ class Interview(models.Model):
             'description': self.exam.description,
             'candidate': self.candidate.get_full_name(),
             'manager': self.manager.get_full_name(),
-            'started': self.started.isoformat(),
-            'time_spent': self.time_spent,
+            'started': self.started.isoformat() if self.started else '',
+            'time_spent': self.time_spent if self.time_spent else 0,
             'results': results
         }
         #template = get_template('cerf/reports/%s' % settings.REPORT_TEMPLATE)

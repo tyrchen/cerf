@@ -6,7 +6,7 @@ import logging
 from django.contrib import admin
 from cerf.forms import CaseForm, ExamForm, InterviewForm
 from cerf.models import Case, Exam, Interview, Answer
-from cerf.utils.helper import generate_authcode
+from cerf.utils.helper import generate_authcode, get_url_by_conf
 
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
@@ -19,6 +19,7 @@ class TagAdminMixin(object):
 
 class CaseAdmin(admin.ModelAdmin, TagAdminMixin):
     form = CaseForm
+    raw_id_fields = ('author', )
     list_display = ('name', 'type', 'level', 'category', 'author', 'tag', 'created', 'modified')
     list_filter = (
         ('level'), ('type'), ('category'), ('author')
@@ -33,14 +34,18 @@ class CaseAdmin(admin.ModelAdmin, TagAdminMixin):
             obj.author = request.user
         return obj
 
+
 class ExamCaseInlineAdmin(admin.TabularInline):
     model = Exam.cases.through
+    raw_id_fields = ('case', )
+
 
 class ExamAdmin(admin.ModelAdmin, TagAdminMixin):
     form = ExamForm
+    raw_id_fields = ('author',)
     list_display = ('name', 'author', 'case', 'tag', 'created', 'modified')
     list_filter = (
-        ('author'),
+        'author',
     )
 
     search_fields = ['name', ]
@@ -62,10 +67,16 @@ class ExamAdmin(admin.ModelAdmin, TagAdminMixin):
 
 class InterviewAdmin(admin.ModelAdmin):
     form = InterviewForm
-    list_display = ('candidate', 'manager', 'resume', 'authcode', 'exam', 'scheduled', 'started', 'time_spent', 'created', 'modified')
+    raw_id_fields = ('candidate', 'manager', 'exam')
+    list_display = ('candidate', 'manager', 'instruction', 'authcode', 'exam', 'scheduled', 'started', 'time_spent', 'created', 'modified')
     list_filter = (
         'manager',
     )
+
+    def instruction(self, obj):
+        return '<a href="%s" target="_blank">Print</a>' % get_url_by_conf('interview_instruction', [obj.id])
+    instruction.short_description = 'Instruction'
+    instruction.allow_tags = True
 
     def save_form(self, request, form, change):
         obj = super(InterviewAdmin, self).save_form(request, form, change)
