@@ -12,6 +12,7 @@ from taggit.managers import TaggableManager
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
 
+
 class Case(models.Model):
     class Meta:
         app_label = 'cerf'
@@ -28,6 +29,7 @@ class Case(models.Model):
     author = models.ForeignKey(User)
     code = models.TextField('Code', blank=True, default='', help_text='Leave this blank if you do not have initial code to let candidate work with')
     language = models.IntegerField('Language', choices=const.CASE_LANG_CHOICES, default=const.CASE_LANG_C)
+    expected_time = models.IntegerField('Expected Time (in minutes)', default=20)
     created = CreationDateTimeField()
     modified = ModificationDateTimeField()
 
@@ -43,12 +45,13 @@ class Case(models.Model):
     def get_extentions(self):
         return const.CASE_LANG_EXTENTIONS[self.language]
 
-class Anwser(models.Model):
+
+class Answer(models.Model):
     class Meta:
         app_label = 'cerf'
         db_table = 'cerf_answer'
         verbose_name = 'Answer'
-        ordering = ['-created']
+        ordering = ['interview', '-created']
 
     case = models.ForeignKey('Case')
     author = models.ForeignKey(User)

@@ -147,6 +147,7 @@ INSTALLED_APPS = (
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 #SESSION_COOKIE_AGE = 14400 # 4 hours
 #SESSION_COOKIE_AGE = 60
+REPORT_TEMPLATE = 'general.md'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

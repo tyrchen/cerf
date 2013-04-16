@@ -9,12 +9,17 @@ Options:
     -h, --help
 
 """
+from datetime import datetime, timedelta
+from dateutil import parser
 import json
 from urlparse import urljoin
 import requests
 
 EXAM_CONFIG_FILE = '.interview.json'
 CASE_CONFIG_FILE = '.case.json'
+FIRST_EXTENSIONS = ['.h']
+
+HOSTNAME = 'http://localhost:8000'
 
 INSTRUCTION_FILE = 'README'
 # Please provide a correct url which contains interview api.
@@ -62,8 +67,9 @@ from docopt import docopt
 import os
 
 class InterviewManager(object):
-    interview_api_base = 'http://localhost:8000/api/interviews/'
-    exam_api_base = 'http://localhost:8000/api/exams/'
+    interview_api_base = HOSTNAME + '/api/interviews/'
+    exam_api_base = HOSTNAME + '/api/exams/'
+    answer_api_base = HOSTNAME + '/api/answers/'
 
     def __init__(self, id=None):
         self.id = id
@@ -166,9 +172,110 @@ class InterviewManager(object):
         self.prepare_environment()
         print('Done!\nYou can "cd %s" to start your exam now.' % self.exam_path)
 
+    def load_data(self, interview):
+        self.id = interview['id']
+        self.code = interview['authcode']
+        self.interview = interview
+        self.exam_id = interview['exam']
+        self.exam_path = 'exam%d' % self.exam_id
+
+    def get_valid_files(self, path, extentions):
+        first_list = []
+        second_list = []
+        normal_list = []
+        for root, dirs, files in os.walk(path):
+            for f in files:
+                for ext in extentions:
+                    if f.endswith(ext):
+                        normal_list.append(f)
+                        break
+
+        for f in normal_list:
+            for ext in FIRST_EXTENSIONS:
+                if f.endswith(ext):
+                    first_list.append(f)
+                    break
+            else:
+                second_list.append(f)
+
+        return first_list, second_list
+
+    def read_content(self, filename):
+        return open(filename).read()
+
+    def submit_case(self, case):
+        path = os.path.join(os.getcwd(), 'case%s' % case['position'])
+        print('\tSubmit case%s...' % case['position']),
+        extentions = [ext.strip() for ext in case['extentions'].split(',')]
+        first_list, second_list = self.get_valid_files(path, extentions)
+        content = ''
+        for name in first_list + second_list:
+            s = '/* %s */\n\n%s' % (name, self.read_content(os.path.join(path, name)))
+            content += s
+
+        data = {
+            'interview': self.id,
+            'author': self.interview['candidate_id'],
+            'case': case['cid'],
+            'content': content
+        }
+        headers = {'Content-type': 'application/json', 'Accept': '*/*'}
+        r = requests.post(self.answer_api_base, data=json.dumps(data), headers=headers)
+        if r.status_code != requests.codes.created:
+            print('Cannot submit case%s, please contact your hiring manager.' % case['position'])
+            # do not bail out so that we could try the latter cases.
+            # exit(-1)
+        else:
+            print('Done!')
+
+    def submit_cases(self):
+        path = os.getcwd()
+        for root, dirs, files in os.walk('.'):
+            for d in dirs:
+                if d.startswith('case'):
+                    config = open(os.path.join(path, d, CASE_CONFIG_FILE), 'r')
+                    self.submit_case(json.load(config))
+
+    def finish_interview(self):
+        api = self.get_interview_api_url(self.id)
+        r = requests.put(api, data={'authcode': self.code, 'action': 'finish'})
+        data = json.loads(r.text)
+        if len(data) == 0:
+            print('Can not finish interview by id %s. Please contact your hiring manager.' % self.id)
+            exit(-1)
 
     def finish(self):
-        pass
+        if not os.path.exists(EXAM_CONFIG_FILE):
+            print('Please change to the root of the exam directory, then execute this command again.')
+            exit(-1)
+
+        # do not trust existing data, retrieve interview data from server again
+
+        interview = json.load(open(EXAM_CONFIG_FILE))
+        r = requests.get(self.get_interview_api_url(interview['id']), data={'authcode': interview['authcode']})
+        interview = json.loads(r.text)
+        self.load_data(interview)
+
+        if interview['time_spent']:
+            print('Your exam is over. Please stay tuned.')
+            exit(-1)
+
+        started = parser.parse(interview['started'])
+        now = datetime.now()
+        diff = now - started
+        print('Thank you! Your exam is done! Total time spent: %dh%dm.' % (
+            diff.seconds / 3600, (diff.seconds % 3600) / 60)
+        )
+
+        print('Submitting your code to generate report...')
+        self.submit_cases()
+        print('Done!')
+
+        print('Notifying the hiring manager...'),
+        self.finish_interview()
+        print('Done!')
+
+        print('Please wait for a short moment. If no one comes in 5m, please inform frontdesk.')
 
 
 def main(arguments):

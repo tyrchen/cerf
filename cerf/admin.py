@@ -5,7 +5,7 @@ from django.db import models
 import logging
 from django.contrib import admin
 from cerf.forms import CaseForm, ExamForm, InterviewForm
-from cerf.models import Case, Exam, Interview
+from cerf.models import Case, Exam, Interview, Answer
 from cerf.utils.helper import generate_authcode
 
 __author__ = 'tchen'
@@ -59,16 +59,13 @@ class ExamAdmin(admin.ModelAdmin, TagAdminMixin):
             obj.author = request.user
         return obj
 
+
 class InterviewAdmin(admin.ModelAdmin):
     form = InterviewForm
-    list_display = ('candidate', 'manager', 'resume', 'authcode', 'exam', 'finished', 'created', 'modified')
+    list_display = ('candidate', 'manager', 'resume', 'authcode', 'exam', 'scheduled', 'started', 'time_spent', 'created', 'modified')
     list_filter = (
-        ('manager'),
+        'manager',
     )
-
-    def finished(self, obj):
-        return obj.report == ''
-    finished.short_description = 'Finished'
 
     def save_form(self, request, form, change):
         obj = super(InterviewAdmin, self).save_form(request, form, change)
@@ -77,6 +74,12 @@ class InterviewAdmin(admin.ModelAdmin):
             obj.authcode = generate_authcode()
         return obj
 
+
+class AnswerAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Case, CaseAdmin)
 admin.site.register(Exam, ExamAdmin)
 admin.site.register(Interview, InterviewAdmin)
+admin.site.register(Answer, AnswerAdmin)
