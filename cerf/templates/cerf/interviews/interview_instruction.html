@@ -2,12 +2,13 @@
 {% load static %}
 {% block extra_style %}
   <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}">
-  <link rel="stylesheet" type="text/css" href="{% static "cerf/components/bootstrap/docs/assets/js/google-code-prettify/prettify.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "cerf/css/prettify/github.css" %}">
 {% endblock %}
 
 {% block extra_css %}
   <style>
-    .container {width: 780px; padding: 40px;}
+    .container {width: 780px; }
+    .container h2 {padding-top: 40px;}
     @media print {
       .navbar {display: none;}
     }
@@ -61,7 +62,10 @@ You can "cd exam{{ interview.exam.id }}" to start your exam now.
       <li>Vim: "Shift+:" to enter command. "wq" is write and quit. "ESC" will quite the command mode.</li>
       <li>Emacs: "C-x C-f" to open file, "C-x C-s" to save file, "C-x C-c" to quit. "C" stands for "Ctrl".</li>
     </ul>
+
+    <div style="margin-top: 40px;"></div>
   </div>
+
 {% endblock %}
 
 {% block extra_script %}
