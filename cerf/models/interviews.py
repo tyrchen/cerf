@@ -46,7 +46,7 @@ class Interview(models.Model):
     def finish(self):
         if not self.started or self.time_spent:
             return False
-        self.time_spent = (datetime.now() - self.started).seconds / 60
+        self.time_spent = (datetime.now() - self.started).seconds / 60 + 1 # make minimum 1 minutes
         self.generate_report(False)
         self.save()
         self.send_notification()
