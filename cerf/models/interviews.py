@@ -87,7 +87,8 @@ class Interview(models.Model):
         pass
 
     def reset(self):
-        self.started = self.time_spent = None
+        self.started = None
+        self.time_spent = None
         self.report = ''
         Answer.objects.filter(interview=self).delete()
         self.save()
