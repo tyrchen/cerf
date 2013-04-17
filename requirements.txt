@@ -4,6 +4,7 @@ django-filter
 django-taggit
 djangorestframework
 docopt
+gunicorn
 markdown
 MySQL-python
 pyjade
