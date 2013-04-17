@@ -1,5 +1,5 @@
 django
-django-extentions
+django-extensions
 django-filter
 django-taggit
 djangorestframework
