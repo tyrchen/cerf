@@ -73,7 +73,7 @@ class InterviewAdmin(admin.ModelAdmin):
         'manager',
     )
 
-    actions = ['generate_report']
+    actions = ['generate_report', 'reset']
 
     def instruction(self, obj):
         return '<a href="%s" target="_blank">Print</a>' % get_url_by_conf('interview_instruction', [obj.id])
@@ -84,6 +84,11 @@ class InterviewAdmin(admin.ModelAdmin):
         for interview in queryset:
             interview.generate_report()
     generate_report.short_description = 'Re-generate interview report'
+
+    def reset(self, request, queryset):
+        for interview in queryset:
+            interview.reset()
+    generate_report.short_description = "Reset interview"
 
     def save_form(self, request, form, change):
         obj = super(InterviewAdmin, self).save_form(request, form, change)
