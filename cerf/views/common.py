@@ -12,15 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 def redirect_user(user):
-    if user.is_staff:
-        return HttpResponseRedirect(get_url_by_conf('interviews'))
-
-    try:
-        latest_interview = Interview.objects.filter(candidate=user).order_by('-created')[0]
-        return HttpResponseRedirect(get_url_by_conf('interview', [latest_interview.id]))
-    except:
-        return info_response('Cannot find your interview record, please contact your hiring manager.')
-
+    return HttpResponseRedirect(get_url_by_conf('interviews'))
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):

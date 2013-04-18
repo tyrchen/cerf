@@ -19,11 +19,11 @@
 
 {% block content %}
   <div class="container" xmlns="http://www.w3.org/1999/html">
-    <h2>Instruction for {{ interview.candidate.get_full_name }}</h2>
+    <h2>Instruction for {{ interview.applicant.get_full_name }}</h2>
 
     <h3>Code exam environment</h3>
     <p>
-      We will provide <em>Ubuntu 12.10</em> as your code exam environment. You could login with <em>candidate</em>/<em>juniper</em>.
+      We will provide <em>Ubuntu 12.10</em> as your code exam environment. You could login with <em>applicant</em>/<em>juniper</em>.
       Once you logged in successfully, please follow the instructions below to start your coding exam:
     </p>
     <ol>
@@ -35,7 +35,7 @@
           <pre class="prettyprint">
 $ vint start {{ interview.id }}
 Please provide your authentication code:{{ interview.authcode }}
-Nice to meet you, {{ interview.candidate.get_full_name }}! Thanks for your interest in Juniper China R&D.
+Nice to meet you, {{ interview.applicant.get_full_name }}! Thanks for your interest in Juniper China R&D.
 Creating the exam environment... Done!
 You can "cd exam{{ interview.exam.id }}" to start your exam now.
           </pre>

@@ -5,7 +5,7 @@ from django.db import models
 import logging
 from django.contrib import admin
 from cerf.forms import CaseForm, ExamForm, InterviewForm
-from cerf.models import Case, Exam, Interview, Answer
+from cerf.models import Case, Exam, Interview, Answer, Applicant
 from cerf.utils.helper import generate_authcode, get_url_by_conf
 
 __author__ = 'tchen'
@@ -20,7 +20,7 @@ class TagAdminMixin(object):
 class CaseAdmin(admin.ModelAdmin, TagAdminMixin):
     form = CaseForm
     raw_id_fields = ('author', )
-    list_display = ('name', 'type', 'level', 'category', 'author', 'tag', 'created', 'modified')
+    list_display = ('id', 'name', 'type', 'level', 'category', 'author', 'tag', 'created', 'modified')
     list_filter = (
         ('level'), ('type'), ('category'), ('author')
     )
@@ -67,8 +67,8 @@ class ExamAdmin(admin.ModelAdmin, TagAdminMixin):
 
 class InterviewAdmin(admin.ModelAdmin):
     form = InterviewForm
-    raw_id_fields = ('candidate', 'manager', 'exam')
-    list_display = ('candidate', 'manager', 'instruction', 'authcode', 'exam', 'scheduled', 'started', 'time_spent', 'created', 'modified')
+    raw_id_fields = ('applicant', 'manager', 'exam')
+    list_display = ('id', 'applicant', 'manager', 'instruction', 'authcode', 'exam', 'scheduled', 'started', 'time_spent', 'created', 'modified')
     list_filter = (
         'manager',
     )
@@ -88,7 +88,7 @@ class InterviewAdmin(admin.ModelAdmin):
     def reset(self, request, queryset):
         for interview in queryset:
             interview.reset()
-    generate_report.short_description = "Reset interview"
+    reset.short_description = "Reset interview"
 
     def save_form(self, request, form, change):
         obj = super(InterviewAdmin, self).save_form(request, form, change)
@@ -99,14 +99,20 @@ class InterviewAdmin(admin.ModelAdmin):
 
 
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'interview', 'author', 'code')
+    list_display = ('id', 'interview', 'applicant', 'code')
 
     def code(self, obj):
         return '<pre>%s</pre>' % obj.content
     code.short_description = 'Code'
     code.allow_tags = True
 
+
+class ApplicantAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'resume', 'created')
+
+
 admin.site.register(Case, CaseAdmin)
 admin.site.register(Exam, ExamAdmin)
 admin.site.register(Interview, InterviewAdmin)
 admin.site.register(Answer, AnswerAdmin)
+admin.site.register(Applicant, ApplicantAdmin)

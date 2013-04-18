@@ -1,7 +1,7 @@
 {% extends 'cerf/base.html' %}
 {% load static %}
 
-{% block title %}{{ report.name }} for {{ report.candidate }} by {{ report.manager }}{% endblock %}
+{% block title %}{{ report.name }} for {{ report.applicant }} by {{ report.manager }}{% endblock %}
 
 {% block extra_style %}
   <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}">
@@ -16,7 +16,7 @@
         <div class="widget stacked">
           <div class="widget-header">
             <i class="icon-pushpin"></i>
-            <h3>{{ report.name }} for {{ report.candidate }} by {{ report.manager }}</h3>
+            <h3>{{ report.name }} for {{ report.applicant }} by {{ report.manager }}</h3>
           </div> <!-- /widget-header -->
           <div class="widget-content">
             <div class="faq-text">
@@ -30,7 +30,7 @@
                 {{ report.started }} and {{ report.time_spent }}
                 <p><em>This exam hasn't been started or finished.</em>. View <a href="{% url "interview_instruction" interview.id %}">Instruction</a></p>
               {% else %}
-                <p>The exam took for <em>{{report.time_spent}}</em> minutes. Total <em>{{candidate_count}}</em> candidates took this exam, average time spent is <em>{{avg_time_spent}}</em> minutes.</p>
+                <p>The exam took for <em>{{report.time_spent}}</em> minutes. Total <em>{{applicant_count}}</em> applicants took this exam, average time spent is <em>{{avg_time_spent}}</em> minutes.</p>
 
                 {% for result in report.results %}
                   <h4>Case{{result.position}}: {{result.name}}</h4>

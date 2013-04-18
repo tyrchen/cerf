@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django import forms
-from cerf.models import Case, Exam, Interview
+from cerf.models import Case, Exam, Interview, Answer
 
 
 class CaseForm(forms.ModelForm):
@@ -18,7 +18,13 @@ class ExamForm(forms.ModelForm):
         exclude = ('author', )
 
 
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        exclude = ('author', )
+
+
 class InterviewForm(forms.ModelForm):
     class Meta:
         model = Interview
-        exclude = ('manager', 'started', 'authcode', 'time_spent', 'report')
+        exclude = ('candidate', 'manager', 'started', 'authcode', 'time_spent', 'report')

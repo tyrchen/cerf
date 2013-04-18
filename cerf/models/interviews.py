@@ -15,6 +15,7 @@ from cerf.utils.helper import get_choice_string
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
 
+
 class Interview(models.Model):
     class Meta:
         app_label = 'cerf'
@@ -22,9 +23,12 @@ class Interview(models.Model):
         verbose_name = 'Interview'
         ordering = ['-created']
 
-    candidate = models.ForeignKey(User, related_name='interview_candidates')
+    # this field is obsolete, should be phased out later
+    candidate = models.ForeignKey(User, related_name='interview_candidate_obsoletes', null=True, blank=True)
+    # the new candidate
+    applicant = models.ForeignKey('Applicant', null=True, blank=True)
     manager = models.ForeignKey(User, related_name='interview_managers')
-    resume = models.FileField(upload_to='uploads/resumes')
+
     exam = models.ForeignKey('Exam')
     report = models.TextField('Report', default='', blank=True, help_text='Do not edit this, since it is generated automatically')
 
@@ -71,7 +75,7 @@ class Interview(models.Model):
         data = {
             'name': self.exam.name,
             'description': self.exam.description,
-            'candidate': self.candidate.get_full_name(),
+            'applicant': self.applicant.get_full_name(),
             'manager': self.manager.get_full_name(),
             'started': self.started.isoformat() if self.started else '',
             'time_spent': self.time_spent if self.time_spent else 0,

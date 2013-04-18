@@ -28,8 +28,8 @@ class LangExtentionField(serializers.CharField):
 
 
 class InterviewSerializer(serializers.ModelSerializer):
-    candidate = UserField(read_only=True)
-    candidate_id = serializers.IntegerField(source='candidate.id', read_only=True)
+    applicant = UserField(read_only=True)
+    applicant_id = serializers.IntegerField(source='applicant.id', read_only=True)
     manager = UserField(read_only=True)
     exam = serializers.PrimaryKeyRelatedField(read_only=True)
 
@@ -71,8 +71,8 @@ class ExamSerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     interview = serializers.PrimaryKeyRelatedField()
     case = serializers.PrimaryKeyRelatedField()
-    author = serializers.PrimaryKeyRelatedField()
+    applicant = serializers.PrimaryKeyRelatedField()
 
     class Meta:
         model = Answer
-        fields = ('id', 'interview', 'case', 'author', 'content')
+        fields = ('id', 'interview', 'case', 'applicant', 'content')

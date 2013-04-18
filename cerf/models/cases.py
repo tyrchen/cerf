@@ -27,7 +27,7 @@ class Case(models.Model):
     category = models.IntegerField('Category', choices=const.CASE_CATEGORY_CHOICES, default=const.CASE_CATEGORY_GENERAL)
     solution = models.TextField('Suggested Solution', default='', blank=True)
     author = models.ForeignKey(User)
-    code = models.TextField('Code', blank=True, default='', help_text='Leave this blank if you do not have initial code to let candidate work with')
+    code = models.TextField('Code', blank=True, default='', help_text='Leave this blank if you do not have initial code to let applicant work with')
     language = models.IntegerField('Language', choices=const.CASE_LANG_CHOICES, default=const.CASE_LANG_C)
     expected_time = models.IntegerField('Expected Time (in minutes)', default=20)
     created = CreationDateTimeField()
@@ -54,7 +54,8 @@ class Answer(models.Model):
         ordering = ['interview', '-created']
 
     case = models.ForeignKey('Case')
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, null=True, blank=True)
+    applicant = models.ForeignKey('Applicant', null=True, blank=True)
     interview = models.ForeignKey('Interview')
     content = models.TextField('Content', default='', blank=True)
     created = CreationDateTimeField()

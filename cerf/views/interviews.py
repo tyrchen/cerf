@@ -49,13 +49,13 @@ class InterviewView(DetailView):
         context_data['report'] = json.loads(interview.report)
 
         exam = interview.exam
-        candidate_count = exam.interview_set.count()
+        applicant_count = exam.interview_set.count()
         avg_time_spent = Interview.objects.filter(exam=exam).aggregate(Avg('time_spent'))
         try:
             context_data['avg_time_spent'] = int(avg_time_spent['time_spent__avg'])
         except:
             context_data['avg_time_spent'] = 0
-        context_data['candidate_count'] = candidate_count
+        context_data['applicant_count'] = applicant_count
 
         return context_data
 
