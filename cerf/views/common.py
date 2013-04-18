@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import logging
-from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
 from django.views.generic import View, TemplateView
 from cerf.models import Interview
 from cerf.utils.helper import get_url_by_conf, info_response
@@ -48,5 +48,8 @@ class SigninView(TemplateView):
             return HttpResponseRedirect(get_url_by_conf('signin'))
 
 
-
+class SignoutView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return HttpResponseRedirect('/')
 

@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from cerf.views.common import IndexView, SigninView
+from cerf.views.common import IndexView, SigninView, SignoutView
 
 admin.autodiscover()
 
@@ -16,7 +16,7 @@ urlpatterns = patterns('',
 
     url('^$', IndexView.as_view(), name="home"),
     url('^signin/$', SigninView.as_view(), name='signin'),
-    url('^signout/$', 'django.contrib.auth.views.logout', name='signout'),
+    url('^signout/$', SignoutView.as_view(), name='signout'),
     url(r'^exams/', include('cerf.urls.exams')),
     url(r'^interviews/', include('cerf.urls.interviews')),
     url(r'^api/', include('cerf.urls.api')),

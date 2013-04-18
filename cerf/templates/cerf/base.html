@@ -40,7 +40,7 @@
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <i class="icon-cog"></i>
           </a>
-          <a class="brand" href="./index.html">
+          <a class="brand" href="/">
             Juniper CNRD Exam Service <sup>0.1</sup>
           </a>
           <div class="nav-collapse">
@@ -48,9 +48,16 @@
               <li class="">
                 <a href="/" class="{% if type == 'home' %}active{% endif %}">Home</a>
               </li>
+              {{ request }}
+
               <li class="">
                 <a href="{% url "interviews" %}" class="{% if type == 'interviews' %}active{% endif %}">Interviews</a>
               </li>
+
+              <li class="">
+                <a href="/signout/">Sign out</a>
+              </li>
+
             </ul>
           </div><!--/.nav-collapse -->
         </div> <!-- /container -->
