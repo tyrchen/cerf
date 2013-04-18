@@ -99,8 +99,12 @@ class InterviewAdmin(admin.ModelAdmin):
 
 
 class AnswerAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'interview', 'author', 'code')
 
+    def code(self, obj):
+        return '<pre>%s</pre>' % obj.content
+    code.short_description = 'Code'
+    code.allow_tags = True
 
 admin.site.register(Case, CaseAdmin)
 admin.site.register(Exam, ExamAdmin)

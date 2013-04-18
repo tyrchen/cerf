@@ -10,7 +10,7 @@ __author__ = 'tchen'
 logger = logging.getLogger(__name__)
 
 
-class AnswerAPIView(generics.ListCreateAPIView):
+class AnswerListCreateAPIView(generics.ListCreateAPIView):
     model = Answer
     serializer_class = AnswerSerializer
 
@@ -20,3 +20,10 @@ class AnswerAPIView(generics.ListCreateAPIView):
             return Answer.objects.filter(interview_id=id)
         return Answer.objects.all()
 
+
+class AnswerAPIView(generics.RetrieveDestroyAPIView):
+    model = Answer
+    serializer_class = AnswerSerializer
+
+    def get_object(self, queryset=None):
+        return self.model.objects.get(pk=self.args[0])
