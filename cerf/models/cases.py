@@ -55,7 +55,7 @@ class Answer(models.Model):
 
     case = models.ForeignKey('Case')
     author = models.ForeignKey(User, null=True, blank=True)
-    applicant = models.ForeignKey('Applicant', null=True, blank=True)
+    applicant = models.ForeignKey('Applicant')
     interview = models.ForeignKey('Interview')
     content = models.TextField('Content', default='', blank=True)
     created = CreationDateTimeField()

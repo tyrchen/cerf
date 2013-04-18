@@ -26,7 +26,7 @@ class Interview(models.Model):
     # this field is obsolete, should be phased out later
     candidate = models.ForeignKey(User, related_name='interview_candidate_obsoletes', null=True, blank=True)
     # the new candidate
-    applicant = models.ForeignKey('Applicant', null=True, blank=True)
+    applicant = models.ForeignKey('Applicant')
     manager = models.ForeignKey(User, related_name='interview_managers')
 
     exam = models.ForeignKey('Exam')
