@@ -1,11 +1,13 @@
 {% extends 'cerf/base.html' %}
 {% load static %}
+{% load general_filters %}
 
 {% block title %}{{ report.name }} for {{ report.applicant }} by {{ report.manager }}{% endblock %}
 
 {% block extra_style %}
-  <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}">
-  <link rel="stylesheet" type="text/css" href="{% static "cerf/css/prettify/tomorrow-night-eighties.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}"
+        xmlns="http://www.w3.org/1999/html">
+  <link rel="stylesheet" type="text/css" href="{% static "cerf/css/prettify/hemisu-light.css" %}">
 {% endblock %}
 
 {% block content %}
@@ -35,14 +37,11 @@
                 {% for result in report.results %}
                   <h4>Case{{result.position}}: {{result.name}}</h4>
 
-                  <blockquote>
-                  <p>{{result.description}}</p>
-                  </blockquote>
+                  <pre>{{result.description|trim}}</pre>
 
-                  <p>This case is for <em>{{result.level}}</em> on <em>{{result.type}}</em>. The category is <em>{{result.category}}</em>. Coding language should be <em>{{result.language}}</em>.</p>
+                  <p>This case is for <em>{{result.level}}</em> on <em>{{result.type}}</em>. The category is <em>{{result.category}}</em>. Coding language should be <em>{{result.language}}</em>. Expected time spent on it is <em>{{ result.expected_time }} minutes</em></p>
 
-
-                    {{result.code|safe}}
+                  {{result.code|safe}}
 
 
 

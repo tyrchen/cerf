@@ -68,6 +68,7 @@ class Interview(models.Model):
             data['type'] = get_choice_string(case.type, const.CASE_TYPE_CHOICES)
             data['category'] = get_choice_string(case.category, const.CASE_CATEGORY_CHOICES)
             data['language'] = get_choice_string(case.language, const.CASE_LANG_CHOICES)
+            data['expected_time'] = case.expected_time
             data['code'] = '<pre class="prettyprint linenums">%s</pre>' % escape(answer.content)
             results.append(data)
 
