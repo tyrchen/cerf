@@ -10,6 +10,7 @@ from cerf.utils.helper import get_url_by_conf, info_response
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
 
+
 def redirect_user(user):
     if user.is_staff:
         return HttpResponseRedirect(get_url_by_conf('interviews'))
@@ -20,6 +21,7 @@ def redirect_user(user):
     except:
         return info_response('Cannot find your interview record, please contact your hiring manager.')
 
+
 class IndexView(View):
     def get(self, request, *args, **kwargs):
         user = request.user
@@ -27,6 +29,7 @@ class IndexView(View):
             return HttpResponseRedirect(get_url_by_conf('signin'))
 
         return redirect_user(user)
+
 
 class SigninView(TemplateView):
     template_name = 'cerf/signin.html'

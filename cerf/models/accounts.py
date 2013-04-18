@@ -7,9 +7,3 @@ import logging
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
 
-class Account(AbstractBaseUser):
-    candidate = models.BooleanField(default=False)
-
-    def is_candidate(self):
-        return self.candidate
-

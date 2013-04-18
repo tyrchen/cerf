@@ -6,5 +6,6 @@ from django.views.generic import ListView
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
 
+
 class CaseListView(ListView):
     pass

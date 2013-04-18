@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 import json
 import logging
-from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView, CreateView
@@ -19,7 +19,7 @@ class InterviewListView(ListView):
     paginate_by = 20
     context_object_name = 'interview_list'
 
-    @method_decorator(staff_member_required)
+    @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(InterviewListView, self).dispatch(*args, **kwargs)
 
@@ -28,7 +28,7 @@ class InterviewCreateView(CreateView):
     form_class = InterviewForm
     template_name = 'cerf/interviews/interview_create.html'
 
-    @method_decorator(staff_member_required)
+    @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(InterviewCreateView, self).dispatch(*args, **kwargs)
 
@@ -59,7 +59,7 @@ class InterviewView(DetailView):
 
         return context_data
 
-    @method_decorator(staff_member_required)
+    @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(InterviewView, self).dispatch(*args, **kwargs)
 
@@ -71,6 +71,6 @@ class InterviewInstructionView(DetailView):
     def get_object(self, queryset=None):
         return self.model.objects.get(pk=self.args[0])
 
-    @method_decorator(staff_member_required)
+    @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(InterviewInstructionView, self).dispatch(*args, **kwargs)
