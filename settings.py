@@ -72,11 +72,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATIC_URL = '/static/'
 
 # Additional locations of static files
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
+STATICFILES_DIRS = ()
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -90,13 +86,21 @@ STATICFILES_FINDERS = (
 SECRET_KEY = '2#i$g5d@)z^^pi^%!aezb1)13-43*7k8&po4_sh_cju8humpll'
 
 # List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS=(
+TEMPLATE_LOADERS = (
     ('pyjade.ext.django.Loader', (
         'django.template.loaders.filesystem.Loader',
         'django.template.loaders.app_directories.Loader',
     )),
 
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
+                               "django.core.context_processors.debug",
+                               "django.core.context_processors.i18n",
+                               "django.core.context_processors.media",
+                               "django.core.context_processors.static",
+                               "django.contrib.messages.context_processors.messages",
+                               "cerf.context_processors.site")
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',

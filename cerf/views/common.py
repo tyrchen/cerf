@@ -4,8 +4,6 @@ import codecs
 import logging
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 from django.views.generic import View, TemplateView
 import markdown
 from cerf.utils.helper import get_url_by_conf, info_response
@@ -18,7 +16,9 @@ def redirect_user(user):
     return HttpResponseRedirect(get_url_by_conf('interviews'))
 
 
-class IndexView(View):
+class IndexView(TemplateView):
+    template_name = ''
+
     def get(self, request, *args, **kwargs):
         user = request.user
         if not user.is_authenticated():
@@ -54,14 +54,17 @@ class StaticFileView(TemplateView):
     filename = ''
     template_name = 'flatpages/default.html'
 
-    def get(self, request, *args, **kwargs):
+    def get_context_data(self, **kwargs):
+        context = super(StaticFileView, self).get_context_data(**kwargs)
         from django.conf import settings
         import os
         filename = os.path.join(settings.PROJECT_ROOT, self.filename)
         title, content = codecs.open(filename, encoding='utf8').read().split('====')
 
         content = markdown.markdown(content)
-        variables = RequestContext(request, {
-            'flatpage': {'title': title, 'content': content}
-        })
-        return render_to_response(self.template_name, variables)
+        context['flatpage'] = {
+            'title': title,
+            'content': content,
+        }
+
+        return context

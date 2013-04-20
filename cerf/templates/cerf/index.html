@@ -1,0 +1,14 @@
+{% extends 'cerf/base.html' %}
+{% load static %}
+{% load general_filters %}
+
+{% block title %}{{ report.name }} for {{ report.applicant }} by {{ report.manager }}{% endblock %}
+
+{% block extra_style %}
+    <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}"
+          xmlns="http://www.w3.org/1999/html">
+    <link rel="stylesheet" type="text/css" href="{% static "cerf/css/prettify/hemisu-light.css" %}">
+{% endblock %}
+
+{% block content %}
+{% endblock %}

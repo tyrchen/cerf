@@ -85,6 +85,10 @@ You're all set. Now try ```./manage.py runserver``` and start your chrome to pla
 
 cerf is licensed under the MIT License.
 
+## Issues
+
+In case you find any issue using the software, please submit it in: [https://github.com/tyrchen/cerf/issues](https://github.com/tyrchen/cerf/issues).
+
 ## Contributors
 
 cerf is designed and implemented by @tyrchen. For more information about the author, please visit: http://tchen.me/pages/aboutme.html

@@ -1,10 +1,10 @@
 {% extends "admin/base.html" %}
 {% load i18n %}
 
-{% block title %}{{ title }} | {% trans 'Juniper CNRD Code Interview Admin' %}{% endblock %}
+{% block title %}{{ title }} | {{ site.name }} {% trans 'Admin' %}{% endblock %}
 
 {% block branding %}
-  <h1 id="site-name">{% trans 'Juniper CNRD Code Interview Admin' %}</h1>
+  <h1 id="site-name">{{ site.name }} {% trans 'Admin' %}</h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
