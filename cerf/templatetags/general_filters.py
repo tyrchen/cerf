@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 
 register = template.Library()
 
+
 @register.filter
 @stringfilter
 def trim(value):

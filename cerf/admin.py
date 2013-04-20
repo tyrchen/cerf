@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.contrib.auth.models import User
-from django.db import models
 import logging
 from django.contrib import admin
 from cerf.forms import CaseForm, ExamForm, InterviewForm
@@ -10,6 +8,7 @@ from cerf.utils.helper import generate_authcode, get_url_by_conf
 
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
+
 
 class TagAdminMixin(object):
     def tag(self, obj):
@@ -22,11 +21,10 @@ class CaseAdmin(admin.ModelAdmin, TagAdminMixin):
     raw_id_fields = ('author', )
     list_display = ('id', 'name', 'type', 'level', 'category', 'author', 'tag', 'created', 'modified')
     list_filter = (
-        ('level'), ('type'), ('category'), ('author')
+        ('level', ), ('type', ), ('category', ), ('author', )
     )
 
-    search_fields = ['name',]
-
+    search_fields = ['name', ]
 
     def save_form(self, request, form, change):
         obj = super(CaseAdmin, self).save_form(request, form, change)
@@ -42,10 +40,10 @@ class ExamCaseInlineAdmin(admin.TabularInline):
 
 class ExamAdmin(admin.ModelAdmin, TagAdminMixin):
     form = ExamForm
-    raw_id_fields = ('author',)
+    raw_id_fields = ('author', )
     list_display = ('name', 'author', 'case', 'tag', 'created', 'modified')
     list_filter = (
-        'author',
+        ('author', ),
     )
 
     search_fields = ['name', ]

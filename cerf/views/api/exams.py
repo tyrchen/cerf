@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 import logging
 from rest_framework.generics import RetrieveAPIView
-from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from cerf.models import Exam
 from cerf.views.api.serializers import ExamCaseSerializer

@@ -7,5 +7,5 @@ from cerf.views.exams import ExamListView
 __author__ = 'tchen'
 
 urlpatterns = patterns('',
-    url('^$', ExamListView.as_view(), name='exams'),
-)
+                       url('^$', ExamListView.as_view(), name='exams'),
+                       )

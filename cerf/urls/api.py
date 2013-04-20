@@ -10,9 +10,8 @@ from cerf.views.api.interviews import InterviewAPIView
 __author__ = 'tchen'
 
 urlpatterns = patterns('',
-    url('^interviews/%s/$' % MATCH_TEXT, InterviewAPIView.as_view(), name='interview_api'),
-    url('^exams/%s/$' % MATCH_TEXT, ExamAPIView.as_view(), name='exam_api'),
-    url('^answers/$', AnswerListCreateAPIView.as_view(), name='answer_list_api'),
-    url('^answers/%s/$' % MATCH_TEXT, AnswerAPIView.as_view(), name='answer_api'),
-
-    )
+                       url('^interviews/%s/$' % MATCH_TEXT, InterviewAPIView.as_view(), name='interview_api'),
+                       url('^exams/%s/$' % MATCH_TEXT, ExamAPIView.as_view(), name='exam_api'),
+                       url('^answers/$', AnswerListCreateAPIView.as_view(), name='answer_list_api'),
+                       url('^answers/%s/$' % MATCH_TEXT, AnswerAPIView.as_view(), name='answer_api'),
+                       )

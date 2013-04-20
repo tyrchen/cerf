@@ -7,5 +7,5 @@ from cerf.views.cases import CaseListView
 __author__ = 'tchen'
 
 urlpatterns = patterns('',
-    url('^$', CaseListView.as_view(), name='cases'),
-)
+                       url('^$', CaseListView.as_view(), name='cases'),
+                       )

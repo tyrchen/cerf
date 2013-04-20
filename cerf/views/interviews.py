@@ -63,6 +63,7 @@ class InterviewView(DetailView):
     def dispatch(self, *args, **kwargs):
         return super(InterviewView, self).dispatch(*args, **kwargs)
 
+
 class InterviewInstructionView(DetailView):
     template_name = 'cerf/interviews/interview_instruction.html'
     context_object_name = 'interview'

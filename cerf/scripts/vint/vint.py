@@ -4,12 +4,12 @@ Usage:
     vint start <id>
     vint finish
     vint reset
-    
+
 Options:
     -h, --help
 
 """
-from datetime import datetime, timedelta
+from datetime import datetime
 from dateutil import parser
 import json
 from urlparse import urljoin
@@ -65,6 +65,7 @@ Instructions:
 
 from docopt import docopt
 import os
+
 
 class InterviewManager(object):
     interview_api_base = HOSTNAME + '/api/interviews/'
@@ -281,7 +282,6 @@ class InterviewManager(object):
 def main(arguments):
     is_finish = arguments['finish']
     is_start = arguments['start']
-    mgr = InterviewManager()
     # sanity check
     if is_finish:
         if os.path.exists(EXAM_CONFIG_FILE):
@@ -309,7 +309,6 @@ def reset():
 
     # reset the status
     requests.put(api, data={'authcode': code, 'action': 'reset'})
-
 
 
 if __name__ == '__main__':

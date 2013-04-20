@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-import json
 import logging
-from django.http import HttpResponse
 from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from cerf.models import Interview
 from cerf.views.api.serializers import InterviewSerializer
 
@@ -53,5 +50,3 @@ class InterviewAPIView(RetrieveUpdateAPIView):
 
         serializer = self.get_serializer(interview)
         return Response(serializer.data)
-
-

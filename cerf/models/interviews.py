@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 from datetime import datetime
 import json
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 import logging
@@ -50,7 +49,7 @@ class Interview(models.Model):
     def finish(self):
         if not self.started or self.time_spent:
             return False
-        self.time_spent = (datetime.now() - self.started).seconds / 60 + 1 # make minimum 1 minutes
+        self.time_spent = (datetime.now() - self.started).seconds / 60 + 1  # make minimum 1 minutes
         self.generate_report(False)
         self.save()
         self.send_notification()

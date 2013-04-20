@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 import logging
@@ -62,6 +61,3 @@ class Answer(models.Model):
 
     def __unicode__(self):
         return '%s: %s' % (self.author.username, self.case)
-
-
-

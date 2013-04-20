@@ -20,4 +20,3 @@ config.set('django', 'env', DeployEnv)
 
 for (section, option, value) in ConfigOverride:
     config.set(section, option, value)
-
