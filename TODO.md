@@ -1,8 +1,8 @@
-## Bugs
+TODO
+====
 
+## 2012/4/20 - 2012/4/26
 
-# Improvements
-
-* test coverage.
-* add front end support for interview creation
-* for admin page, filter for user is too broad (e.g. just provider list of managers for the filtering)
+* Make front page a place of recent activities, including recent cases, recent exams, recent interviews, etc.
+* Provide a frontend UI for interview / exam /case adding.
+* Provide a frontend UI for exam / case display.

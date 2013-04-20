@@ -33,4 +33,8 @@ urlpatterns += patterns('django.contrib.flatpages.views',
                         url(r'^release-notes/$',
                             StaticFileView.as_view(filename='release_notes.md'),
                             name='release_notes'),
+
+                        url(r'^todo/$',
+                            StaticFileView.as_view(filename='TODO.md'),
+                            name='todo'),
                         )
