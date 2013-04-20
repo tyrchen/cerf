@@ -21,7 +21,7 @@ class CaseAdmin(admin.ModelAdmin, TagAdminMixin):
     raw_id_fields = ('author', )
     list_display = ('id', 'name', 'type', 'level', 'category', 'author', 'tag', 'created', 'modified')
     list_filter = (
-        ('level', ), ('type', ), ('category', ), ('author', )
+        'level', 'type', 'category', 'author',
     )
 
     search_fields = ['name', ]
@@ -43,7 +43,7 @@ class ExamAdmin(admin.ModelAdmin, TagAdminMixin):
     raw_id_fields = ('author', )
     list_display = ('name', 'author', 'case', 'tag', 'created', 'modified')
     list_filter = (
-        ('author', ),
+        'author',
     )
 
     search_fields = ['name', ]

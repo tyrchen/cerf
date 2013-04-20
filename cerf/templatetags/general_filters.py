@@ -6,7 +6,7 @@ from django.template.defaultfilters import stringfilter
 
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
-
+from markdown import markdown as md
 
 register = template.Library()
 
@@ -15,3 +15,9 @@ register = template.Library()
 @stringfilter
 def trim(value):
     return value.strip()
+
+
+@register.filter
+@stringfilter
+def markdown(value):
+    return md(value)

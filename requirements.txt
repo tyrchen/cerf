@@ -1,6 +1,7 @@
 django
 django-extensions
 django-filter
+django-markdown
 django-taggit
 djangorestframework
 docopt

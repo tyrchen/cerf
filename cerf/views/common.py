@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import codecs
 import logging
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.views.generic import View, TemplateView
+import markdown
 from cerf.utils.helper import get_url_by_conf, info_response
 
 __author__ = 'tchen'
@@ -44,3 +48,20 @@ class SignoutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return HttpResponseRedirect('/')
+
+
+class StaticFileView(TemplateView):
+    filename = ''
+    template_name = 'flatpages/default.html'
+
+    def get(self, request, *args, **kwargs):
+        from django.conf import settings
+        import os
+        filename = os.path.join(settings.PROJECT_ROOT, self.filename)
+        title, content = codecs.open(filename, encoding='utf8').read().split('====')
+
+        content = markdown.markdown(content)
+        variables = RequestContext(request, {
+            'flatpage': {'title': title, 'content': content}
+        })
+        return render_to_response(self.template_name, variables)

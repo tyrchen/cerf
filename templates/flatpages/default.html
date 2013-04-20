@@ -1,0 +1,38 @@
+{% extends "cerf/base.html" %}
+{% load general_filters %}
+{% load static %}
+{% block extra_css %}
+    <style>
+      body {background: none; background-image: none;}
+      .container {width: 960px;}
+
+      h1, h2, h3, h4, h5, h6 {
+          color: #2F353E;
+          font-weight: 300;
+          text-transform: uppercase;
+          margin:  15px 0px;
+      }
+
+      h1 {
+          text-align: center;
+          margin: 20px 0 45px 0;
+      }
+      h1 span {
+          background: #FFF;
+          padding: 0 20px;
+      }
+
+      h2 {padding-bottom: 5px; border-bottom: 1px solid #000;}
+
+    </style>
+{% endblock %}
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+{% block content %}
+    <div class="main" style="margin-top: 40px;">
+        <div class="container">
+          <h1><span>{{ flatpage.title }}</span></h1>
+          {{ flatpage.content|markdown|safe }}
+        </div>
+    </div>
+{% endblock %}

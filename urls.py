@@ -2,9 +2,11 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from cerf.views.common import IndexView, SigninView, SignoutView
+from cerf.views.common import IndexView, SigninView, SignoutView, StaticFileView
+from django_markdown import flatpages
 
 admin.autodiscover()
+flatpages.register()
 
 urlpatterns = patterns('',
                        # Examples:
@@ -21,4 +23,14 @@ urlpatterns = patterns('',
                        url(r'^interviews/', include('cerf.urls.interviews')),
                        url(r'^api/', include('cerf.urls.api')),
                        url(r'^admin/', include(admin.site.urls)),
+                       url(r'^markdown/', include('django_markdown.urls')),
                        )
+
+urlpatterns += patterns('django.contrib.flatpages.views',
+                        url(r'^help/$', StaticFileView.as_view(filename='README.md'),
+                            name='help'
+                            ),
+                        url(r'^release-notes/$',
+                            StaticFileView.as_view(filename='release_notes.md'),
+                            name='release_notes'),
+                        )
