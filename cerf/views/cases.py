@@ -16,10 +16,16 @@ class CaseListView(ListView):
     paginate_by = 20
     context_object_name = 'case_list'
 
+    def get_context_data(self, **kwargs):
+        context_data = super(CaseListView, self).get_context_data(**kwargs)
+        context_data['page_type'] = 'cases'
+        return context_data
+
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(CaseListView, self).dispatch(*args, **kwargs)
 
 
 class CaseView(DetailView):
-    pass
+    model = Case
+    template_name = 'cerf/cases/case.html'

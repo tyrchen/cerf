@@ -52,6 +52,8 @@ class IndexView(TemplateView):
         context['exams'] = self.get_items(exam_qs)
         context['cases'] = self.get_items(case_qs)
 
+        context['page_type'] = 'home'
+
         return context
 
     @method_decorator(login_required)

@@ -19,6 +19,11 @@ class InterviewListView(ListView):
     paginate_by = 20
     context_object_name = 'interview_list'
 
+    def get_context_data(self, **kwargs):
+        context_data = super(InterviewListView, self).get_context_data(**kwargs)
+        context_data['page_type'] = 'interviews'
+        return context_data
+
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(InterviewListView, self).dispatch(*args, **kwargs)

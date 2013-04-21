@@ -1,0 +1,54 @@
+{% extends 'cerf/base.html' %}
+{% load static %}
+{% load general_filters %}
+
+{% block title %}{{ case.name }} for {{ case.applicant }} by {{ case.manager }}{% endblock %}
+
+{% block extra_style %}
+    <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}"
+          xmlns="http://www.w3.org/1999/html">
+    <link rel="stylesheet" type="text/css" href="{% static "cerf/css/prettify/hemisu-light.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="span8">
+                    <div class="widget stacked">
+                        <div class="widget-header">
+                            <i class="icon-pushpin"></i>
+                            <h3>{{ case.get_name }}</h3>
+                        </div> <!-- /widget-header -->
+                        <div class="widget-content">
+                            <div class="faq-text">
+                                <h3>Summary</h3>
+
+                                <blockquote>
+                                    <p>{{ case.get_description }}</p>
+                                </blockquote>
+
+                            </div>
+                        </div> <!-- /widget-content -->
+                    </div> <!-- /widget -->
+                </div> <!-- /span8 -->
+
+                <div class="span4">
+                    <div class="widget stacked widget-box">
+                        <div class="widget-header">
+                            <h3>Toolbox for Future Use</h3>
+                        </div> <!-- /widget-header -->
+                        <div class="widget-content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div> <!-- /widget-content -->
+                    </div> <!-- /widget -->
+                </div> <!-- /span4 -->
+            </div> <!-- /row -->
+        </div> <!-- /container -->
+    </div> <!-- /main -->
+{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript" src="{% static "cerf/components/bootstrap/docs/assets/js/google-code-prettify/prettify.js" %}"></script>
+    <script>prettyPrint();</script>
+{% endblock %}

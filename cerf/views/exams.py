@@ -16,10 +16,16 @@ class ExamListView(ListView):
     paginate_by = 20
     context_object_name = 'exam_list'
 
+    def get_context_data(self, **kwargs):
+        context_data = super(ExamListView, self).get_context_data(**kwargs)
+        context_data['page_type'] = 'exams'
+        return context_data
+
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(ExamListView, self).dispatch(*args, **kwargs)
 
 
 class ExamView(DetailView):
-    pass
+    model = Exam
+    template_name = 'cerf/exams/exam.html'
