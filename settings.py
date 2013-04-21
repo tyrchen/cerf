@@ -155,7 +155,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 #SESSION_COOKIE_AGE = 60
 REPORT_TEMPLATE = 'general.md'
 
-LOGIN_URL = '/signup/'
+LOGIN_URL = '/signin/'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

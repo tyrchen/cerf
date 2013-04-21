@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 
 def redirect_user(user):
-    return HttpResponseRedirect(get_url_by_conf('interviews'))
+    return HttpResponseRedirect('/')
 
 
 class IndexView(TemplateView):

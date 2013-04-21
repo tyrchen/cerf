@@ -14,4 +14,6 @@ before_script:
   - "pep8 --exclude=migrations --ignore=E501,E225 src"
   - pyflakes -x W src
 script:
-  - python setup.py test
+  - python manage.py test cerf
+notifications:
+  email: false
