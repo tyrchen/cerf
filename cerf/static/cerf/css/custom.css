@@ -8,3 +8,9 @@ Assigned to:	You
 
 -------------------------------------------------------------------*/
 .main em, .container em { font-weight: bold; font-style: normal; font-size: 110%; color: #4e5946; }
+.main { margin-top: 40px; }
+
+.widget .stat a { text-decoration: none; }
+
+.news-items { padding: 0 2em 0 1.5em; }
+.news-items li { width: 100%; padding: 0px; }

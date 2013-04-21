@@ -1,7 +1,7 @@
 {% extends 'cerf/base.html' %}
 {% load static %}
 
-{% block title %}Interviews{% endblock %}
+{% block title %}Exams{% endblock %}
 
 {% block extra_style %}
   <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}">
@@ -16,26 +16,17 @@
         <div class="widget stacked">
           <div class="widget-header">
             <i class="icon-pushpin"></i>
-            <h3>Recent Interview Records</h3>
+            <h3>Recent Exams</h3>
           </div> <!-- /widget-header -->
           <div class="widget-content">
             <ol class="faq-list">
-              {% if interview_list %}
-                {% for interview in interview_list %}
+              {% if exam_list %}
+                {% for exam in exam_list %}
                   <li>
                     <div class="faq-icon"><div class="faq-number">{{ forloop.counter }}</div></div>
                     <div class="faq-text">
-                      <h4><a href="{% url "interview" interview.id %}">{{ interview.exam.name }} for {{ interview.applicant.get_full_name }} by {{ interview.manager.get_full_name }}</a></h4>
-                      <p>{{ interview.exam.description }}</p>
-                      {% if not interview.started %}
-                        <p>This interview is <em>NOT started</em>.</p>
-                      {% else %}
-                        {% if not interview.time_spent %}
-                          <p>This interview is started on {{ interview.started }}, but <em>NOT finished</em> yet.</p>
-                        {% else %}
-                          <p>This interview is <em>finished</em>, click to view its report.</p>
-                        {% endif %}
-                      {% endif %}
+                      <h4><a href="{% url "exam" exam.id %}">{{ exam.get_name }}</a></h4>
+                      <p>{{ exam.get_description }}</p>
                     </div>
                   </li>
                 {% endfor %}
@@ -46,13 +37,13 @@
               <div class="pagination">
               <span class="page-links">
                 {% if page_obj.has_previous %}
-                  <a href="/interviews/?page={{ page_obj.previous_page_number }}">previous</a>
+                  <a href="/exams/?page={{ page_obj.previous_page_number }}">previous</a>
                 {% endif %}
                 <span class="page-current">
                   Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                 </span>
                 {% if page_obj.has_next %}
-                  <a href="/interviews/?page={{ page_obj.next_page_number }}">next</a>
+                  <a href="/exams/?page={{ page_obj.next_page_number }}">next</a>
                 {% endif %}
               </span>
               </div>
@@ -64,7 +55,7 @@
       <div class="span4">
         <div class="widget widget-plain">
           <div class="widget-content">
-            <a href="/admin/cerf/interview/add/" target="_blank" class="btn btn-large btn-warning btn-support-ask btn-disable">Create an Interview</a>
+            <a href="/admin/cerf/exam/add/" target="_blank" class="btn btn-large btn-warning btn-support-ask btn-disable">Create an exam</a>
             <a href="/admin/cerf/exam/add/" target="_blank" class="btn btn-large btn-info btn-support-ask btn-disable">Create an Exam</a>
             <a href="/admin/cerf/case/add/" target="_blank" class="btn btn-large btn-success btn-support-ask btn-disable">Create a Case</a>
 

@@ -8,10 +8,10 @@ from cerf.views.interviews import InterviewListView, InterviewView, InterviewCre
 __author__ = 'tchen'
 
 urlpatterns = patterns('',
-                       url('^$', InterviewListView.as_view(), name='interviews'),
-                       url('^create/$', InterviewCreateView.as_view(), name='interview_create'),
+                       url(r'^$', InterviewListView.as_view(), name='interviews'),
+                       url(r'^create/$', InterviewCreateView.as_view(), name='interview_create'),
 
-                       url('^%s/$' % const.MATCH_TEXT, InterviewView.as_view(), name="interview"),
-                       url('^%s/instruction/$' % const.MATCH_TEXT, InterviewInstructionView.as_view(), name='interview_instruction'),
+                       url(r'^%s/$' % const.MATCH_TEXT, InterviewView.as_view(), name="interview"),
+                       url(r'^%s/instruction/$' % const.MATCH_TEXT, InterviewInstructionView.as_view(), name='interview_instruction'),
 
                        )

@@ -39,6 +39,19 @@ class Interview(models.Model):
     created = CreationDateTimeField()
     modified = ModificationDateTimeField()
 
+    def __unicode__(self):
+        return 'Interview %s: %s' % (self.applicant, self.exam)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('interview', [self.id])
+
+    def get_name(self):
+        return unicode(self)
+
+    def get_description(self):
+        return self.exam.description
+
     def start(self):
         if not self.started:
             self.started = datetime.now()

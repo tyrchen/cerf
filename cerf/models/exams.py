@@ -34,11 +34,21 @@ class Exam(models.Model):
     def __unicode__(self):
         return self.name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('exam', [self.id])
+
     def get_cases(self):
         return self.cases.order_by('examcase_set')
 
     def get_examcases(self):
         return ExamCase.objects.filter(exam=self)
+
+    def get_name(self):
+        return unicode(self)
+
+    def get_description(self):
+        return self.description
 
 
 class ExamCase(models.Model):

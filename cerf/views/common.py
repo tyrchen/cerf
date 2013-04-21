@@ -3,10 +3,13 @@ from __future__ import unicode_literals
 import codecs
 import logging
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.utils.decorators import method_decorator
 from django.views.generic import View, TemplateView
 import markdown
-from cerf.utils.helper import get_url_by_conf, info_response
+from cerf.models import Interview, Exam, Case
+from cerf.utils.helper import get_url_by_conf, info_response, get_average
 
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
@@ -17,14 +20,43 @@ def redirect_user(user):
 
 
 class IndexView(TemplateView):
-    template_name = ''
+    template_name = 'cerf/index.html'
+    max_items = 5
 
-    def get(self, request, *args, **kwargs):
-        user = request.user
-        if not user.is_authenticated():
-            return HttpResponseRedirect(get_url_by_conf('signin'))
+    def get_items(self, qset):
+        items = []
+        for item in qset.order_by('-created')[:self.max_items]:
+            month, day = item.created.strftime('%b %d').split(' ')
+            items.append({
+                'title': item.get_name(),
+                'description': item.get_description(),
+                'url': item.get_absolute_url(),
+                'day': day,
+                'month': month
+            })
+        return items
 
-        return redirect_user(user)
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        interview_qs = Interview.objects.all()
+        exam_qs = Exam.objects.all()
+        case_qs = Case.objects.all()
+        context['stat'] = {
+            'interviews': interview_qs.count(),
+            'exams': exam_qs.count(),
+            'cases': case_qs.count(),
+            'avg_exam_time': get_average(Interview.objects.all(), 'time_spent')
+        }
+
+        context['interviews'] = self.get_items(interview_qs)
+        context['exams'] = self.get_items(exam_qs)
+        context['cases'] = self.get_items(case_qs)
+
+        return context
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(IndexView, self).dispatch(*args, **kwargs)
 
 
 class SigninView(TemplateView):

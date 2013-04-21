@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 __author__ = 'tchen'
 
 MATCH_TEXT = r'([\-_0-9a-zA-Z]+)'
+MATCH_PK = r'(?P<pk>[0-9]+)'
 
 CASE_TYPE_CODING = 0
 CASE_TYPE_DEBUG = 1

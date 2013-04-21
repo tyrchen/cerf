@@ -41,8 +41,18 @@ class Case(models.Model):
     def __unicode__(self):
         return self.name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('case', [self.id])
+
     def get_extentions(self):
         return const.CASE_LANG_EXTENTIONS[self.language]
+
+    def get_name(self):
+        return unicode(self)
+
+    def get_description(self):
+        return self.description
 
 
 class Answer(models.Model):

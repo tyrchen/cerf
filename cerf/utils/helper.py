@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 import urlparse
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
+from django.db.models import Avg
 from django.http import QueryDict
 
 import logging
@@ -161,3 +162,8 @@ def get_choice_string(choice, choices):
 
 def get_lang_extentions(lang, extentions):
     return extentions[lang]
+
+
+def get_average(qset, field_name):
+    field_name_avg = '%s__avg' % field_name
+    return int(qset.aggregate(Avg(field_name)).get(field_name_avg, 0))

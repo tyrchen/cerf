@@ -5,10 +5,153 @@
 {% block title %}{{ report.name }} for {{ report.applicant }} by {{ report.manager }}{% endblock %}
 
 {% block extra_style %}
-    <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}"
-          xmlns="http://www.w3.org/1999/html">
-    <link rel="stylesheet" type="text/css" href="{% static "cerf/css/prettify/hemisu-light.css" %}">
+    <link href="{% static "cerf/css/pages/dashboard.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
+  <div class="main">
+    <div class="container">
+      <div class="row">
+        <div class="span6">
+          <div class="widget stacked">
+  
+            <div class="widget-header">
+                <i class="icon-bar-chart"></i>
+                <h3>Statistics</h3>
+            </div> <!-- /widget-header -->
+
+            <div class="widget-content">
+                <div class="stats">
+                    <div class="stat">
+                        <a href="{% url "interviews" %}">
+                        <span class="stat-value">{{ stat.interviews }}</span>
+                        Interviews</a>
+                    </div> <!-- /stat -->
+
+                    <div class="stat">
+                        <a href="{% url "exams" %}">
+                        <span class="stat-value">{{ stat.exams }}</span>
+                        Exams</a>
+                    </div> <!-- /stat -->
+
+                    <div class="stat">
+                        <a href="{% url "cases" %}">
+                        <span class="stat-value">{{ stat.cases }}</span>
+                        Cases</a>
+                    </div> <!-- /stat -->
+
+                </div> <!-- /stats -->
+
+
+                <div id="chart-stats" class="stats">
+
+                    <div class="stat stat-chart">
+                        <div id="donut-chart" class="chart-holder" data-casestat="{{ stat.casestat }}"></div> <!-- #donut -->
+                    </div> <!-- /substat -->
+
+                    <div class="stat stat-time">
+                        <span class="stat-value">{{ stat.avg_exam_time }} min</span>
+                        Average Time on Exam
+                    </div> <!-- /substat -->
+                </div> <!-- /substats -->
+            </div> <!-- /widget-content -->
+          </div> <!-- /widget -->
+
+          <div class="widget widget-nopad stacked">
+            <div class="widget-header">
+                <i class="icon-list-alt"></i>
+                <h3>Recent Exams</h3>
+            </div> <!-- /widget-header -->
+  
+            <div class="widget-content">
+  
+              <ul class="news-items">
+                {% for item in exams %}
+                <li>
+
+                    <div class="news-item-detail">
+                        <a href="{{ item.url }}" class="news-item-title">{{ item.title }}</a>
+                        <p class="news-item-preview">{{ item.description|truncatewords:20 }}</p>
+                    </div>
+
+                    <div class="news-item-date">
+                        <span class="news-item-day">{{ item.day }}</span>
+                        <span class="news-item-month">{{ item.month }}</span>
+                    </div>
+                </li>
+                {% endfor %}
+              </ul>
+          </div> <!-- /widget-content -->
+          </div>
+        </div> <!-- /span6 -->
+  
+        <div class="span6">
+            <div class="widget widget-nopad stacked">
+                <div class="widget-header">
+                    <i class="icon-list-alt"></i>
+                    <h3>Recent Interviews</h3>
+                </div> <!-- /widget-header -->
+
+                <div class="widget-content">
+
+                    <ul class="news-items">
+                      {% for item in interviews %}
+                          <li>
+
+                              <div class="news-item-detail">
+                                  <a href="{{ item.url }}" class="news-item-title">{{ item.title }}</a>
+                                  <p class="news-item-preview">{{ item.description|truncatewords:20 }}</p>
+                              </div>
+
+                              <div class="news-item-date">
+                                  <span class="news-item-day">{{ item.day }}</span>
+                                  <span class="news-item-month">{{ item.month }}</span>
+                              </div>
+                          </li>
+                      {% endfor %}
+                    </ul>
+                </div> <!-- /widget-content -->
+            </div>
+            <div class="widget widget-nopad stacked">
+                <div class="widget-header">
+                    <i class="icon-list-alt"></i>
+                    <h3>Recent Cases</h3>
+                </div> <!-- /widget-header -->
+
+                <div class="widget-content">
+
+                    <ul class="news-items">
+                      {% for item in cases %}
+                          <li>
+
+                              <div class="news-item-detail">
+                                  <a href="{{ item.url }}" class="news-item-title">{{ item.title }}</a>
+                                  <p class="news-item-preview">{{ item.description|truncatewords:20 }}</p>
+                              </div>
+
+                              <div class="news-item-date">
+                                  <span class="news-item-day">{{ item.day }}</span>
+                                  <span class="news-item-month">{{ item.month }}</span>
+                              </div>
+                          </li>
+                      {% endfor %}
+                    </ul>
+                </div> <!-- /widget-content -->
+            </div>
+        </div>
+  
+  </div> <!-- /span6 -->
+      </div> <!-- /row -->
+    </div> <!-- /container -->
+  </div> <!-- /main -->
+{% endblock %}
+
+{% block extra_script %}
+<script src="{% static "cerf/js/plugins/flot/jquery.flot.js" %}"></script>
+<script src="{% static "cerf/js/plugins/flot/jquery.flot.pie.js" %}"></script>
+<script src="{% static "cerf/js/plugins/flot/jquery.flot.resize.js" %}"></script>
+
+
+
+<script src="{% static "cerf/js/charts/donut.js" %}"></script>
 {% endblock %}

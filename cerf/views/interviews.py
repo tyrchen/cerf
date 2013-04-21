@@ -3,11 +3,11 @@ from __future__ import unicode_literals
 import json
 import logging
 from django.contrib.auth.decorators import login_required
-from django.db.models import Avg
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView, CreateView
 from cerf.forms import InterviewForm
 from cerf.models import Interview
+from cerf.utils.helper import get_average
 
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
@@ -50,11 +50,7 @@ class InterviewView(DetailView):
 
         exam = interview.exam
         applicant_count = exam.interview_set.count()
-        avg_time_spent = Interview.objects.filter(exam=exam).aggregate(Avg('time_spent'))
-        try:
-            context_data['avg_time_spent'] = int(avg_time_spent['time_spent__avg'])
-        except:
-            context_data['avg_time_spent'] = 0
+        context_data['avg_time_spent'] = get_average(Interview.objects.filter(exam=exam), 'time_spent')
         context_data['applicant_count'] = applicant_count
 
         return context_data
