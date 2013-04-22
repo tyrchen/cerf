@@ -21,7 +21,7 @@ class Case(models.Model):
         ordering = ['level']
 
     name = models.CharField('Unique Name', max_length=48, help_text='Please provide a unique name for the case to be easily memorized')
-    description = models.CharField('Description', max_length=1024, help_text='The detailed description of case - you can write it in Markdown')
+    description = models.TextField('Description', help_text='The detailed description of case - you can write it in Markdown')
     type = models.IntegerField('Type', choices=const.CASE_TYPE_CHOICES, default=const.CASE_TYPE_CODING)
     level = models.IntegerField('Level', choices=const.CASE_LEVEL_CHOICES, default=const.CASE_LEVEL_COMPETENT)
     category = models.IntegerField('Category', choices=const.CASE_CATEGORY_CHOICES, default=const.CASE_CATEGORY_GENERAL)
