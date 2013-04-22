@@ -9,6 +9,8 @@ from django.contrib.sites.models import Site
 
 
 def site(request):
+    import cerf
     return {
-        'site': Site.objects.get_current()
+        'site': Site.objects.get_current(),
+        'version': cerf.__version__,
     }
