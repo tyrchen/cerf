@@ -28,7 +28,20 @@
                                     <p>{{ exam.get_description }}</p>
                                 </blockquote>
 
-                              
+                                {{ exam.get_intro|markdown|safe }}
+
+                                {% for item in exam.get_case_data %}
+                                    <h4>Case{{item.position}}: {{item.name}}</h4>
+
+                                    <pre>{{item.description|trim}}</pre>
+
+                                    {{ item.intro|markdown|safe }}
+
+                                    {% if item.solution %}
+                                        {{ item.solution|safe }}
+                                    {% endif %}
+                                {% endfor %}
+
                             </div>
                         </div> <!-- /widget-content -->
                     </div> <!-- /widget -->

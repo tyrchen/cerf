@@ -6,6 +6,7 @@ import logging
 from django.utils.text import slugify
 from django_extensions.db.fields import CreationDateTimeField, ModificationDateTimeField
 from taggit.managers import TaggableManager
+from cerf.utils.helper import get_average
 
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
@@ -44,11 +45,35 @@ class Exam(models.Model):
     def get_examcases(self):
         return ExamCase.objects.filter(exam=self)
 
+    def get_case_data(self):
+        items = []
+        for item in self.get_examcases():
+            case = item.case.get_data()
+            case['position'] = item.position
+            items.append(case)
+
+        return items
+
     def get_name(self):
         return unicode(self)
 
     def get_description(self):
         return self.description
+
+    def get_interview_stat(self):
+        from cerf.models import Interview
+        qs = Interview.objects.filter(exam=self, time_spent__gt=10)
+        return {
+            'count': qs.count(),
+            'avg_time_spent': get_average(qs, 'time_spent')
+        }
+
+    def get_intro(self):
+        stat = self.get_interview_stat()
+        return '''Total __%s__ applicants took this exam,
+                  average time spent is __%s__ minutes.''' % (
+            stat['count'], stat['avg_time_spent']
+        )
 
 
 class ExamCase(models.Model):

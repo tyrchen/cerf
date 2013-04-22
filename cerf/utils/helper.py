@@ -166,4 +166,7 @@ def get_lang_extentions(lang, extentions):
 
 def get_average(qset, field_name):
     field_name_avg = '%s__avg' % field_name
-    return int(qset.aggregate(Avg(field_name)).get(field_name_avg, 0))
+    try:
+        return int(qset.aggregate(Avg(field_name)).get(field_name_avg, 0))
+    except Exception:
+        return 0

@@ -8,8 +8,6 @@ import logging
 from django.utils.html import escape
 from django_extensions.db.fields import CreationDateTimeField, ModificationDateTimeField
 from cerf.models import Answer, ExamCase
-from cerf.utils import const
-from cerf.utils.helper import get_choice_string
 
 __author__ = 'tchen'
 logger = logging.getLogger(__name__)
@@ -72,15 +70,9 @@ class Interview(models.Model):
         results = []
         for answer in answers:
             case = answer.case
-            data = dict()
+            data = case.get_data()
             data['position'] = ExamCase.objects.get(exam=self.exam_id, case=case).position
-            data['name'] = case.name
-            data['description'] = case.description
-            data['level'] = get_choice_string(case.level, const.CASE_LEVEL_CHOICES)
-            data['type'] = get_choice_string(case.type, const.CASE_TYPE_CHOICES)
-            data['category'] = get_choice_string(case.category, const.CASE_CATEGORY_CHOICES)
-            data['language'] = get_choice_string(case.language, const.CASE_LANG_CHOICES)
-            data['expected_time'] = case.expected_time
+
             data['code'] = '<pre class="prettyprint linenums">%s</pre>' % escape(answer.content)
             results.append(data)
 

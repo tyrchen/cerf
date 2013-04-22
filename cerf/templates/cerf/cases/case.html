@@ -28,6 +28,12 @@
                                     <p>{{ case.get_description }}</p>
                                 </blockquote>
 
+                                {% with data=case.get_data %}
+                                    {{ data.intro|markdown|safe }}
+                                    {{ data.solution|safe }}
+                                {% endwith %}
+
+
                             </div>
                         </div> <!-- /widget-content -->
                     </div> <!-- /widget -->

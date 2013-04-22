@@ -29,7 +29,6 @@
               </blockquote>
 
               {% if not report.started or not report.time_spent %}
-                {{ report.started }} and {{ report.time_spent }}
                 <p><em>This exam hasn't been started or finished.</em>. View <a href="{% url "interview_instruction" interview.id %}">Instruction</a></p>
               {% else %}
                 <p>The exam took for <em>{{report.time_spent}}</em> minutes. Total <em>{{applicant_count}}</em> applicants took this exam, average time spent is <em>{{avg_time_spent}}</em> minutes.</p>
@@ -39,8 +38,7 @@
 
                   <pre>{{result.description|trim}}</pre>
 
-                  <p>This case is for <em>{{result.level}}</em> on <em>{{result.type}}</em>. The category is <em>{{result.category}}</em>. Coding language should be <em>{{result.language}}</em>. Expected time spent on it is <em>{{ result.expected_time }} minutes</em></p>
-
+                  {{ result.intro|markdown|safe }}
                   {{result.code|safe}}
 
 
