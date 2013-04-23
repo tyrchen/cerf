@@ -11,8 +11,8 @@ install:
   - pip install https://github.com/dcramer/pyflakes/tarball/master
   - pip install -q -r requirements.txt --use-mirrors
 before_script:
-  - "pep8 --exclude=migrations --ignore=E501,E225 src"
-  - pyflakes -x W src
+  - "pep8 --exclude=migrations --ignore=E501,E225 cerf"
+  - pyflakes -x W cerf
 script:
   - python manage.py test cerf
 notifications:
