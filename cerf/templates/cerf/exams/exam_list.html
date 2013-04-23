@@ -7,6 +7,12 @@
   <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}">
 {% endblock %}
 
+{% block extra_css %}
+    <style>
+      .faq-number {background: #49afcd;}
+    </style>
+{% endblock %}
+
 
 {% block content %}
 <div class="main">
@@ -55,9 +61,7 @@
       <div class="span4">
         <div class="widget widget-plain">
           <div class="widget-content">
-            <a href="/admin/cerf/exam/add/" target="_blank" class="btn btn-large btn-warning btn-support-ask btn-disable">Create an exam</a>
-            <a href="/admin/cerf/exam/add/" target="_blank" class="btn btn-large btn-info btn-support-ask btn-disable">Create an Exam</a>
-            <a href="/admin/cerf/case/add/" target="_blank" class="btn btn-large btn-success btn-support-ask btn-disable">Create a Case</a>
+            <a href="/admin/cerf/exam/add/" target="_blank" class="btn btn-large btn-info btn-support-ask">Create an Exam</a>
 
           </div> <!-- /widget-content -->
         </div> <!-- /widget -->

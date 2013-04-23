@@ -5,8 +5,14 @@
 
 {% block extra_style %}
   <link rel="stylesheet" type="text/css" href="{% static "cerf/js/plugins/faq/faq.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "cerf/css/prettify/hemisu-light.css" %}">
 {% endblock %}
 
+{% block extra_css %}
+    <style>
+        .faq-number {background: #5bb75b;}
+    </style>
+{% endblock %}
 
 {% block content %}
 <div class="main">
@@ -26,7 +32,7 @@
                     <div class="faq-icon"><div class="faq-number">{{ forloop.counter }}</div></div>
                     <div class="faq-text">
                       <h4><a href="{% url "case" case.id %}">{{ case.get_name }}</a></h4>
-                      <p>{{ case.description }}</p>
+                      <pre class="prettyprint">{{ case.description }}</pre>
                     </div>
                   </li>
                 {% endfor %}
@@ -55,9 +61,7 @@
       <div class="span4">
         <div class="widget widget-plain">
           <div class="widget-content">
-            <a href="/admin/cerf/case/add/" target="_blank" class="btn btn-large btn-warning btn-support-ask btn-disable">Create an case</a>
-            <a href="/admin/cerf/exam/add/" target="_blank" class="btn btn-large btn-info btn-support-ask btn-disable">Create an Exam</a>
-            <a href="/admin/cerf/case/add/" target="_blank" class="btn btn-large btn-success btn-support-ask btn-disable">Create a Case</a>
+            <a href="/admin/cerf/case/add/" target="_blank" class="btn btn-large btn-success btn-support-ask">Create a Case</a>
 
           </div> <!-- /widget-content -->
         </div> <!-- /widget -->
@@ -76,4 +80,9 @@
 </div> <!-- /main -->
 
 
+{% endblock %}
+
+{% block extra_script %}
+    <script type="text/javascript" src="{% static "cerf/components/bootstrap/docs/assets/js/google-code-prettify/prettify.js" %}"></script>
+    <script>prettyPrint();</script>
 {% endblock %}

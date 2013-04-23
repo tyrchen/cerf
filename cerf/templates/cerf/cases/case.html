@@ -24,9 +24,7 @@
                             <div class="faq-text">
                                 <h3>Summary</h3>
 
-                                <blockquote>
-                                    <p>{{ case.get_description }}</p>
-                                </blockquote>
+                                <pre class="prettyprint">{{ case.get_description }}</pre>
 
                                 {% with data=case.get_data %}
                                     {{ data.intro|markdown|safe }}
