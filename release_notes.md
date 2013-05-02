@@ -3,6 +3,7 @@ Release Notes
 
 ## 2013/05/01
 * Import users from employee directory (631 in total)
+* Fix vint hostname issue - now .vintconfig is working properly in v0.1.5.
 
 
 ## 2013/04/21
