@@ -11,6 +11,23 @@
 {% block content %}
   <div class="main">
     <div class="container">
+      <div class="widget stacked">
+          <div class="widget-header">
+              <i class="icon-bar-chart"></i>
+              <h3>Reservation Status</h3>
+          </div> <!-- /widget-header -->
+          <div class="widget-content">
+              <div class="row">
+                  <div class="span8">
+                    <div id="calendar"></div>
+                  </div>
+                  <div class="span3">
+                      <h3>Reservation Detail</h3>
+                      <ul id="calendar-detail" style="height: 500px; overflow-y: auto;"></ul>
+                  </div>
+              </div>
+          </div>
+      </div>
       <div class="row">
         <div class="span6">
           <div class="widget stacked">
@@ -46,14 +63,14 @@
                 <div id="chart-stats" class="stats">
 
                     <div class="stat stat-chart">
-                        <div id="donut-chart" class="chart-holder" data-casestat="{{ stat.casestat }}"></div> <!-- #donut -->
-                    </div> <!-- /substat -->
+                        <div id="donut-chart" class="chart-holder" data-casestat="{{ stat.casestat }}"></div>
+                    </div>
 
                     <div class="stat stat-time">
                         <span class="stat-value">{{ stat.avg_exam_time }} min</span>
                         Average Time on Exam
-                    </div> <!-- /substat -->
-                </div> <!-- /substats -->
+                    </div>
+                </div>
             </div> <!-- /widget-content -->
           </div> <!-- /widget -->
 
@@ -147,6 +164,7 @@
 {% endblock %}
 
 {% block extra_script %}
+<!--
 <script src="{% static "cerf/js/plugins/flot/jquery.flot.js" %}"></script>
 <script src="{% static "cerf/js/plugins/flot/jquery.flot.pie.js" %}"></script>
 <script src="{% static "cerf/js/plugins/flot/jquery.flot.resize.js" %}"></script>
@@ -154,4 +172,34 @@
 
 
 <script src="{% static "cerf/js/charts/donut.js" %}"></script>
+-->
+
+    <script>
+      $(function() {
+
+          var options = {
+              events_url:'/api/events/',
+              tmpl_path: '/static/cerf/components/bootstrap-calendar/tmpls/',
+              view: 'month',
+              onAfterEventsLoad: function(events) {
+                  if(!events) {
+                      return;
+                  }
+                  var list = $('#calendar-detail');
+                  list.html('');
+
+                  $.each(events, function(key, val) {
+                      var d = new Date(val.start * 1000)
+                      $(document.createElement('li'))
+                              .html('<a href="' + val.url + '">' + moment(d).format("MM-DD h:mm a") + ": " +
+                                      val.title + '</a>')
+                              .appendTo(list);
+                  });
+              }
+          };
+
+          var calendar = $('#calendar').calendar(options);
+      })
+    </script>
+
 {% endblock %}

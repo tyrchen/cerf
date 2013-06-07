@@ -5,6 +5,8 @@
     "jquery": "*",
     "lodash": "*",
 	"bootstrap": "*",
-	"isotope": "*"
+	"isotope": "*",
+	"bootstrap-calendar": "*",
+    "moment": "*"
   }
 }

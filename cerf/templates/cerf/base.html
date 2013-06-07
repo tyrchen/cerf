@@ -21,6 +21,8 @@
 
     <link href="{% static "cerf/css/base-admin-2.css" %}" rel="stylesheet">
     <link href="{% static "cerf/css/base-admin-2-responsive.css" %}" rel="stylesheet">
+    <link href="{% static "cerf/components/bootstrap-calendar/css/calendar.css" %}"
+          rel="stylesheet">
 
     {% block extra_style %}{% endblock %}
 
@@ -102,9 +104,14 @@
     <!-- put js at the bottom of the file -->
 
     <script type="text/javascript" src="{% static "cerf/components/jquery/jquery.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "cerf/components/lodash/lodash.js" %}"></script>
+    <script type="text/javascript" src="{% static "cerf/js/moment.min.js" %}"></script>
     <script src={% static "cerf/js/libs/jquery-ui-1.10.0.custom.min.js" %}></script>
     <script type="text/javascript" src="{% static "cerf/components/bootstrap/docs/assets/js/bootstrap.min.js" %}"></script>
-
+    <script type="text/javascript" src="
+    {% static "cerf/components/bootstrap-calendar/js/calendar.min.js" %}"></script>
+    <script type="text/javascript" src="
+    {% static "cerf/components/bootstrap-calendar/js/language/en-GB.js" %}"></script>
     <script src="{% static "cerf/js/Application.js" %}"></script>
 
     {% block extra_script %}
