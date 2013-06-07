@@ -189,7 +189,7 @@
                   list.html('');
 
                   $.each(events, function(key, val) {
-                      var d = new Date(val.start * 1000)
+                      var d = new Date(val.start)
                       $(document.createElement('li'))
                               .html('<a href="' + val.url + '">' + moment(d).format("MM-DD h:mm a") + ": " +
                                       val.title + '</a>')

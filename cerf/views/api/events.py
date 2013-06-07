@@ -47,10 +47,11 @@ class EventListAPIView(View):
         if count > 0:
             data['success'] = 1
             data['result'] = [{'id': i.id,
-                               'title': i.get_name(),
+                               'title': i.get_reserve_info(),
                                'url': i.get_absolute_url(),
-                               'start': int(time.mktime(i.scheduled.timetuple())),
-                               'end': int(time.mktime((i.scheduled + timedelta(hours=1)).timetuple()))
+                               'class': 'event-info',
+                               'start': int(time.mktime(i.scheduled.timetuple())) * 1000,
+                               'end': int(time.mktime((i.scheduled + timedelta(hours=1)).timetuple())) * 1000
                                } for i in results]
         else:
             data['success'] = 1

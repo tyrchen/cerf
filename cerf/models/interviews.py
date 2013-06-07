@@ -47,6 +47,9 @@ class Interview(models.Model):
     def get_name(self):
         return unicode(self)
 
+    def get_reserve_info(self):
+        return 'reserved by %s to interview %s' % (self.manager, self.applicant)
+
     def get_description(self):
         return self.exam.description
 
