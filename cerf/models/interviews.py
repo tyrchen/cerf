@@ -48,7 +48,8 @@ class Interview(models.Model):
         return unicode(self)
 
     def get_reserve_info(self):
-        return 'reserved by %s to interview %s' % (self.manager, self.applicant)
+        return '%s: reserved by %s to interview %s' % (self.scheduled.strftime('%y-%m-%d %H:%M'), self.manager,
+                                                       self.applicant)
 
     def get_description(self):
         return self.exam.description
