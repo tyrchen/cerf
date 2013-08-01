@@ -36,7 +36,8 @@ class EventListAPIView(View):
     def get_queryset(self):
 
         today = datetime.today()
-        weekstart = datetime(today.year, today.month, today.day - today.weekday())
+        weekstart = today - timedelta(today.weekday())
+        #weekstart = datetime(today.year, today.month, today.day - today.weekday())
         return self.model.objects.filter(scheduled__gte=weekstart)
 
     def get(self, request, *args, **kwargs):
